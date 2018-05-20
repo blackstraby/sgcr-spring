@@ -12,5 +12,7 @@ import java.io.Serializable;
 @Entity
 @Accessors(chain = true)
 public class Atleta extends  UsuarioComum  implements Serializable {
+    private String tamCamisa;
+    private String apelido;
 
 }
