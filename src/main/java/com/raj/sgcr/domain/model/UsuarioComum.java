@@ -15,7 +15,7 @@ import java.io.Serializable;
 public abstract class UsuarioComum implements Serializable {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String nome;
     private String email;
     private String senha;
