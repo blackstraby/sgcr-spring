@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"> Corrida </title>
+</head>
+<body>
+<h1 th:text="${title}">Corrida</h1>
+
+<th:block th:switch="${operacao}">
+    <div th:case="'listar'">
+        <table>
+            <tr th:each="corrida : ${corridas}">
+                <td th:text="${corrida.nome}">nome</td>
+                <td th:text="${corrida.maxPessoa}">Máx Pessoas</td>
+                <td><a th:href="@{'/corridas/edit/' + ${corrida.id}}">Editar</a></td>
+                <td><a th:href="@{'/corridas/delete/' + ${corrida.id}}">Excluir</a></td>
+            </tr>
+        </table>
+        <a th:href="@{~/corridas/add}">Adicionar</a>
+
+    </div>
+    <div th:case="'adicionar'">
+        <form method="post">
+            <label for="nome">Nome</label><br>
+            <input type="text" name="nome" id="nome"/><br>
+            <label for="maxPessoa">Máx Pessoas</label><br>
+            <input type="text" name="maxPessoa" id="maxPessoa"/><br>
+            <label for="organizador">Organizador</label><br>
+            <select name="organizador" id="organizador">
+                <option th:each="organizador : ${organizadores}" th:value="${organizador.id}" th:text="${organizador.nome}"></option>
+            </select><br>
+            <input type="submit" value="Adicionar corrida"/>
+        </form>
+
+    </div>
+    <div th:case="'editar'">
+        <form th:object="${corrida}" method="post">
+            <label for="nome">Nome</label><br>
+            <input th:value="*{nome}" type="text" name="nome"/><br>
+            <label for="nome">Máx Pessoas</label><br>
+            <input th:value="*{maxPessoa}" type="text" name="maxPessoa"/><br>
+            <label for="organizador">Organizador</label><br>
+            <select name="organizador">
+                <option th:each="organizador : ${organizadores}" th:value="${organizador.id}" th:text="${organizador.nome}" th:selected="${organizador.id==corrida.organizador.getId()}"></option>
+            </select><br>
+            <input type="submit" value="Editar corrida"/>
+        </form>
+    </div>
+    <div th:case="'deletar'">
+        <form th:object="${corrida}" method="post">
+            <label for="nome">Nome</label><br>
+            <input th:value="*{nome}" type="text" name="nome" disabled/><br>
+            <label for="nome">Máx Pessoas</label><br>
+            <input th:value="*{maxPessoa}" type="text" name="maxPessoa" disabled/><br>
+            <label for="organizador">Organizador</label><br>
+            <select name="organizador" disabled>
+                <option th:each="organizador : ${organizadores}" th:value="${organizador.id}" th:text="${organizador.nome}"></option>
+            </select><br>
+            <input type="submit" value="Deletar corrida"/>
+        </form>
+    </div>
+</th:block>
+
+</body>
+</html>
