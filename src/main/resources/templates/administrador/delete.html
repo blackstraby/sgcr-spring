@@ -8,7 +8,7 @@
 <body>
 <h1 th:text="${title}"> Deletar </h1>
 
-<form th:object="${atleta}" method="post">
+<form th:object="${administrador}" method="post">
     <div class="form-group row">
         <label for="nome" class="col-2 col-form-label">Nome:</label>
         <div class="col-10">
@@ -16,19 +16,14 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="cpf" class="col-2 col-form-label">CPF:</label>
+        <label for="email" class="col-2 col-form-label">Email:</label>
         <div class="col-10">
-            <input class="form-control" th:value="*{cpf}" type="text"  name="cpf" id="cpf" disabled>
+            <input class="form-control" th:value="*{email}" type="text"  name="email" id="email" disabled>
         </div>
     </div>
+
     <div class="form-group row">
-        <label for="apelido" class="col-2 col-form-label">Apelido:</label>
-        <div class="col-10">
-            <input class="form-control" th:value="*{apelido}" type="text"  name="apelido" id="apelido" disabled>
-        </div>
-    </div>
-    <div class="form-group row">
-        <input type="submit" class="btn btn-success" value="Deletar Atleta"/>
+        <input type="submit" class="btn btn-success" value="Deletar Admin"/>
     </div>
 </form>
 

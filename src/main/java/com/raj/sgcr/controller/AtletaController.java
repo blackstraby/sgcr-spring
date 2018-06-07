@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(value = "atleta")
+@RequestMapping(value = "atletas")
 public class AtletaController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class AtletaController {
 
     @GetMapping(value = "add")
     public String displayCorredorForm(Model model) {
-        model.addAttribute("tittle", "Adicionar atleta");
+        model.addAttribute("title", "Adicionar atleta");
         return "atleta/add";
     }
 
@@ -61,11 +61,11 @@ public class AtletaController {
         if (corredor.isPresent()) {
             model.addAttribute("atleta", corredor.get());
         }
-        model.addAttribute("tittle", "Excluir atleta");
+        model.addAttribute("title", "Excluir atleta");
         return "atleta/delete";
     }
 
-    @PostMapping(value = "delete/{id}") // site.com/corredor/delete/1
+    @PostMapping(value = "delete/{id}") // site.com/atleta/delete/1
     public String delete(@PathVariable Long id, @ModelAttribute Atleta corredor) {
         corredorRepository.delete(corredor);
         return "redirect:/atleta";
