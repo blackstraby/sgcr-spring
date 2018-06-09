@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments :: head">
+        <meta charset="UTF-8"/>
+        <title th:text="${title}"> Atleta </title>
+    </head>
+<body>
+
+<div class="container corpo">
+    <div class="row">
+        <h1 th:text="${title}">Atleta</h1>
+
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <table class="table table-hover table-responsive" th:if="${!atletas.isEmpty()}">
+                    <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Data Nascimento</th>
+                        <th>Tamanho Camisa</th>
+                        <th>Celular</th>
+                        <th colspan="2">Acao</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="atleta : ${atletas}">
+                        <td th:text="${atleta.id}">Codigo</td>
+                        <td th:text="${atleta.nome}">Nome</td>
+                        <td th:text="${atleta.email}">Email</td>
+                        <td th:text="${atleta.dataNascimento}">Data Nascimento</td>
+                        <td th:text="${atleta.tamCamisa}">Tamanho Camisa</td>
+                        <td th:text="${atleta.celular}">Celular</td>
+                        <td><a th:href="@{'/atleta/edit/' + ${atleta.id}}">Editar</a></td>
+                        <td><a th:href="@{'/atleta/delete/' + ${atleta.id}}">Excluir</a></td>
+                    </tr>
+                </table>
+                <h2 th:unless="${!atletas.isEmpty()}">Sem Atletas</h2>
+
+                <button class="btn btn-default"><a style="text-decoration: none"
+                                                   th:href="@{'~/atleta/add/'}">Adicionar</a></button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

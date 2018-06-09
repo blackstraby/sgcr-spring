@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head">
+        <meta charset="UTF-8"/>
+        <title th:text="${title}"> Administrador </title>
+    </head>
+<body>
+
+<div class="container corpo">
+    <div class="row">
+        <h1 th:text="${title}">Administrador</h1>
+
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <table class="table table-hover table-responsive" th:if="${!administradores.isEmpty()}">
+                    <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th colspan="2">Acão</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="administrador : ${administradores}">
+                        <td th:text="${administrador.id}">Codigo</td>
+                        <td th:text="${administrador.nome}">Nome</td>
+                        <td th:text="${administrador.email}">Email</td>
+                        <td><a th:href="@{'/administrador/edit/' + ${administrador.id}}">Editar</a></td>
+                        <td><a th:href="@{'/administrador/delete/' + ${administrador.id}}">Excluir</a></td>
+                    </tr>
+                </table>
+                <h2 th:unless="${!administradores.isEmpty()}">Sem Administradores</h2>
+
+                <button class="btn btn-default"><a  style="text-decoration: none" th:href="@{'~/administrador/add/'}">Adicionar</a> </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
