@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">Corrida</title>
+</head>
+
+<body>
+<div class="container corpo">
+    <br><br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h5 class="card-header" th:text="${title}">Corrida</h5>
+                <div class="card-body">
+                    <form th:object="${corrida}" method="post">
+                        <div class="form-group">
+                            <label for="nome">Nome:</label>
+                            <input type="text" required class="form-control" id="nome" name="nome"
+                                   th:value="${corrida?.nome}" th:disabled="${operacao} == deletar"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="maxPessoa">Máx Pessoas:</label>
+                            <input type="number" class="form-control" id="maxPessoa" name="maxPessoa" required
+                                   th:value="${corrida?.maxPessoa}" th:disabled="${operacao} == deletar"/>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <select class="form-control custom-select" name="organizador" id="organizador" th:disabled="${operacao} == deletar">
+                                <option value="" class="d-none">Selecione um Organizador...</option>
+                                <option th:if="${operacao} == adicionar" th:each="organizador : ${organizadores}"
+                                        th:value="${organizador.id}" th:text="${organizador.nome}"></option>
+
+                                <option th:if="${operacao} != adicionar" th:each="organizador : ${organizadores}"
+                                        th:value="${organizador?.id}"   th:text="${organizador.nome}"
+                                        th:selected="${organizador?.id==corrida?.organizador.getId()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <a href="/corrida/" style="text-decoration: none">
+                                <button type="button" class="btn btn-danger">Cancelar</button>
+                            </a>
+                            <input type="submit" class="btn btn-success" th:value="${botaoOperacao}" name="btnConfirmar"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

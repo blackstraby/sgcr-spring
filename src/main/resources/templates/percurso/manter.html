@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head">
+        <meta charset="UTF-8"/>
+        <title>Percurso</title>
+    </head>
+<body>
+
+<div class="container corpo">
+    <div class="row">
+        <h1 th:text="${title}"> Operação </h1>
+
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <form th:object="${percurso}" method="post">
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="quilometragem">Quilometragem:</label>
+                            <input type="text" required class="form-control" id="quilometragem" name="quilometragem"
+                                   th:value="${percurso?.quilometragem}" th:disabled="${operacao} == deletar"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao">Descrição:</label>
+                            <input type="text" required class="form-control" id="descricao"
+                                   name="descricao" th:value="${percurso?.descricao}"
+                                   th:disabled="${operacao} == deletar"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="organizador">Organizador:</label>
+                            <select name="organizador" id="organizador" th:disabled="${operacao} == deletar">
+                                <option th:if="${operacao} == adicionar" th:each="organizador : ${organizadores}"
+                                        th:value="${organizador.id}" th:text="${organizador.nome}"></option>
+
+                                <option th:if="${operacao} != adicionar" th:each="organizador : ${organizadores}"
+                                        th:value="${organizador?.id}"   th:text="${organizador.nome}"
+                                        th:selected="${organizador?.id==percurso.organizador.getId()}"></option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <a href="/percurso/" style="text-decoration: none">
+                                <button type="button" class="btn btn-danger">Cancelar</button>
+                            </a>
+
+                            <input type="submit" class="btn btn-success" th:value="${botaoOperacao}"
+                                   name="btnConfirmar"/>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
