@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1>Lista de Corridas</h1>
+
+<table>
+    <tr th:each="corrida : ${corridas}">
+        <td th:text="${corrida.nome}">Nome</td>
+        <td th:text="${corrida.data}">Data</td>
+        <td th:text="${corrida.totalParticipantes}">Participantes</td>
+        <td><a th:href="@{'/corridas/edit/' + ${corrida.id}}" >Editar</a></td>
+        <td><a th:href="@{'/corridas/delete/' + ${corrida.id}}">Excluir</a></td>
+    </tr>
+</table>
+<a th:href="@{~/corridas/add}">Adicionar</a>
+</body>
+</html>
