@@ -34,7 +34,13 @@ public class Corrida implements Serializable {
     private Integer ativo;
     private Date dataInicioRetiradaKit;
     private Date dataFinalRetiradaKit;
+<<<<<<< HEAD
     //@ManyToOne
     //private Organizador organizador;
 }
 
+=======
+    @ManyToOne
+    private Organizador organizador;
+}
+>>>>>>> 0d6a7b9b5dc182aebc92e44e3da8adf2e090693f
