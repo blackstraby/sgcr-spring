@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments :: head">
+        <meta charset="UTF-8"/>
+        <title th:text="${title}"> Organizador </title>
+    </head>
+<body>
+
+<div class="container corpo">
+    <div class="row">
+        <h1 th:text="${title}">Organizador</h1>
+
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <table class="table table-hover table-responsive" th:if="${!organizadores.isEmpty()}">
+                    <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Data Nascimento</th>
+                        <th>Tamanho Camisa</th>
+                        <th>Celular</th>
+                        <th colspan="2">Acao</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="organizador : ${organizadores}">
+                        <td th:text="${organizador.id}">Codigo</td>
+                        <td th:text="${organizador.nome}">Nome</td>
+                        <td th:text="${organizador.email}">Email</td>
+                        <td th:text="${organizador.dataNascimento}">Data Nascimento</td>
+                        <td th:text="${organizador.celular}">Celular</td>
+                        <td><a th:href="@{'/organizador/edit/' + ${organizador.id}}">Editar</a></td>
+                        <td><a th:href="@{'/organizador/delete/' + ${organizador.id}}">Excluir</a></td>
+                    </tr>
+                </table>
+                <h2 th:unless="${!organizadores.isEmpty()}">Sem Organizadores</h2>
+
+                <button class="btn btn-default"><a style="text-decoration: none"
+                                                   th:href="@{'~/organizador/add/'}">Adicionar</a></button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

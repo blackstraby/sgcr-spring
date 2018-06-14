@@ -15,34 +15,44 @@ public class OrganizadorController {
     private OrganizadorRepository organizadorRepository;
 
     @GetMapping(value = "")
-    public String organizadores(Model model) {
+    public String organizador(Model model) {
+        model.addAttribute("operacao", "listar");
+        model.addAttribute("title", "Lista Organizadores");
+        model.addAttribute("botaoOperacao", "Listar Organizadores");
+
         model.addAttribute("organizadores", organizadorRepository.findAll());
-        return "organizador/organizadores";
+        return "organizador/pesquisaOrganizador";
     }
 
     @GetMapping(value = "add")
     public String displayOrganizadorForm(Model model) {
-        model.addAttribute("tittle", "Adicionar organizador");
-        return "organizador/add";
+        model.addAttribute("operacao", "adicionar");
+        model.addAttribute("title", "Adicionar organizador");
+        model.addAttribute("botaoOperacao", "Adicionar Organizador");
+
+        return "organizador/manterOrganizador";
     }
 
     @PostMapping(value = "add")
     public String processOrganizadorForm(@ModelAttribute Organizador organizador) {
         organizadorRepository.save(organizador);
-        return "redirect:";
+        return "redirect:/organizador";
     }
 
-    @GetMapping(value = "edit/{id}")
+    @GetMapping(value = "edit/{id}") // site.com/organizador/edit
     public String organizadorEdit(Model model, @PathVariable Long id) {
         Optional<Organizador> organizador = organizadorRepository.findById(id);
-        if (organizador.isPresent()){
+        model.addAttribute("operacao", "editar");
+        model.addAttribute("title", "Editar organizador");
+        model.addAttribute("botaoOperacao", "Editar Organizador");
+
+        if (organizador.isPresent()) {
             model.addAttribute("organizador", organizador.get());
         }
-        model.addAttribute("title", "Editar organizador");
-        return "organizador/edit";
+        return "organizador/manterOrganizador";
     }
 
-    @PostMapping(value = "edit/{id}") // site.com/corredor/edit/1/
+    @PostMapping(value = "edit/{id}") // site.com/organizador/edit/1/
     public String edit(@ModelAttribute Organizador organizador, Model model,
                        @PathVariable Long id) throws Exception {
         if (id.equals(organizador.getId())) {
@@ -53,17 +63,19 @@ public class OrganizadorController {
         return "redirect:/organizador";
     }
 
-    @GetMapping(value = "delete/{id}") // site.com/corredor/delete/1
+    @GetMapping(value = "delete/{id}") // site.com/organizador/delete/1
     public String organizadorDelete(Model model, @PathVariable Long id) {
         Optional<Organizador> organizador = organizadorRepository.findById(id);
+        model.addAttribute("operacao", "deletar");
+        model.addAttribute("title", "Excluir organizador");
+        model.addAttribute("botaoOperacao", "Excluir Organizador");
         if (organizador.isPresent()) {
             model.addAttribute("organizador", organizador.get());
         }
-        model.addAttribute("tittle", "Excluir organizador");
-        return "organizador/delete";
+        return "organizador/manterOrganizador";
     }
 
-    @PostMapping(value = "delete/{id}") // site.com/corredor/delete/1
+    @PostMapping(value = "delete/{id}")
     public String delete(@PathVariable Long id, @ModelAttribute Organizador organizador) {
         organizadorRepository.delete(organizador);
         return "redirect:/organizador";
