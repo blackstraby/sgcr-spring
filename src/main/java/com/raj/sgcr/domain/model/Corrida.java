@@ -19,8 +19,8 @@ public class Corrida implements Serializable {
     private Long id;
     private Long serialVersionUID = 1L;
     private String nome;
-    private Date horario;
-    private Date data;
+    private String horario;
+    private String data;
     private Integer maxPessoa;
     private String banner;
     private String descricao;
@@ -30,10 +30,9 @@ public class Corrida implements Serializable {
     private String bairro;
     private String logradouro;
     private String numero;
-    private Integer edicao;
     private Integer ativo;
-    private Date dataInicioRetiradaKit;
-    private Date dataFinalRetiradaKit;
+    private String dataInicioRetiradaKit;
+    private String dataFinalRetiradaKit;
     @ManyToOne
     private Organizador organizador;
 }
