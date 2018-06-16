@@ -1,23 +1,21 @@
 package com.raj.sgcr.domain.model;
 
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Generated;
-import lombok.experimental.Accessors;
+
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 
-@Data
+
 @Entity
-@Accessors(chain = true)
-public class Pagamento {
-    @Id
-    @GeneratedValue
-    private Long id;
-    @ManyToOne
-    private Corrida Corrida;
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class  Pagamento implements  Serializable{
 
-    //private Inscricao inscricao;
+    @Id
+    private Long id;
+
+    @OneToMany(mappedBy = "pagamento")
+    private Set<Inscricao> inscricao;
 }

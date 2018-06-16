@@ -31,4 +31,6 @@ public class Inscricao implements Serializable {
     private Lote lote;
     @ManyToOne
     private Kit kit;
+    @ManyToOne
+    private Pagamento pagamento;
 }
