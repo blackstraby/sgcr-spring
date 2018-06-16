@@ -4,10 +4,8 @@ package com.raj.sgcr.domain.model;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -22,8 +20,11 @@ public class Kit {
     private String imagem;
     private String tipoChip;
     private Double preco;
+
     @ManyToOne
     private Organizador organizador;
+    @OneToMany(mappedBy="kit")
+    private Set<Inscricao> inscricao;
 
 
 }

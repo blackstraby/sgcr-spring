@@ -3,6 +3,7 @@
     <head th:replace="fragments :: head">
         <meta charset="UTF-8"/>
         <title>Atleta</title>
+        <script src="/js/myscript.js"></script>
     </head>
 <body>
 
@@ -24,7 +25,7 @@
                             <div class="form-group">
                                 <label for="cpf">CPF:</label>
                                 <input type="text" required class="form-control" id="cpf"
-                                       placeholder="xxx.xxx.xxx-xx" onkeydown="javascript: fMasc(this, mCPF);"
+                                       placeholder="xxx.xxx.xxx-xx" onkeydown="fMasc(this, mCPF);"
                                        name="cpf" th:value="${atleta?.cpf}" th:disabled="${operacao} == deletar"/>
                             </div>
                             <div class="form-group">
@@ -32,7 +33,7 @@
                                 <input type="text" required class="form-control" id="dtNasc"
                                        placeholder="__/__/____" onkeypress="mascaraData(this, event)"
                                        name="dataNascimento" th:value="${atleta?.dataNascimento}"
-                                       th:disabled="${operacao} == deletar"/>
+                                       th:disabled="${operacao} == deletar" />
                             </div>
                             <div class="form-group">
                                 <label for="apelido">Apelido:</label>
@@ -52,7 +53,7 @@
                             <div class="form-group">
                                 <label for="cel">Celular</label>
                                 <input type="tel" required class="form-control" id="cel"
-                                       placeholder="(xx) x xxxx-xxxx" onkeydown="javascript: fMasc(this, mTel);"
+                                       placeholder="(xx) x xxxx-xxxx" onkeydown="fMasc(this, mTel);"
                                        name="celular" th:value="${atleta?.celular}"
                                        th:disabled="${operacao} == deletar"/>
                             </div>
@@ -60,7 +61,7 @@
                                 <label for="telefone">Telefone:</label>
                                 <input type="tel" required class="form-control" id="telefone"
                                        placeholder="(xx) x xxxx-xxxx" name="telefone"
-                                       onkeydown="javascript: fMasc(this, mTel);" th:value="${atleta?.telefone}"
+                                       onkeydown="fMasc(this, mTel);" th:value="${atleta?.telefone}"
                                        th:disabled="${operacao} == deletar"/>
                             </div>
 

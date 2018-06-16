@@ -3,10 +3,8 @@ package com.raj.sgcr.domain.model;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -18,7 +16,9 @@ public class Percurso {
     private Long id;
     private String descricao;
     private Double quilometragem;
+
     @ManyToOne
     private Organizador organizador;
-
+    @OneToMany(mappedBy="percurso")
+    private Set<Inscricao> inscricao;
 }
