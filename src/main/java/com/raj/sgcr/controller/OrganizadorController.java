@@ -21,7 +21,7 @@ public class OrganizadorController {
         model.addAttribute("botaoOperacao", "Listar Organizadores");
 
         model.addAttribute("organizadores", organizadorRepository.findAll());
-        return "organizador/pesquisaOrganizador";
+        return "organizador/pesquisar";
     }
 
     @GetMapping(value = "add")
@@ -30,7 +30,7 @@ public class OrganizadorController {
         model.addAttribute("title", "Adicionar organizador");
         model.addAttribute("botaoOperacao", "Adicionar Organizador");
 
-        return "organizador/manterOrganizador";
+        return "organizador/manter";
     }
 
     @PostMapping(value = "add")
@@ -49,7 +49,7 @@ public class OrganizadorController {
         if (organizador.isPresent()) {
             model.addAttribute("organizador", organizador.get());
         }
-        return "organizador/manterOrganizador";
+        return "organizador/manter";
     }
 
     @PostMapping(value = "edit/{id}") // site.com/organizador/edit/1/
@@ -72,7 +72,7 @@ public class OrganizadorController {
         if (organizador.isPresent()) {
             model.addAttribute("organizador", organizador.get());
         }
-        return "organizador/manterOrganizador";
+        return "organizador/manter";
     }
 
     @PostMapping(value = "delete/{id}")

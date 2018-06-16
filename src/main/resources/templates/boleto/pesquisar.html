@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments :: head">
+        <meta charset="UTF-8"/>
+        <title th:text="${title}"> Boleto </title>
+    </head>
+<body>
+
+<div class="container corpo">
+    <div class="row">
+        <h1 th:text="${title}">Boleto</h1>
+
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <table class="table table-hover table-responsive" th:if="${!boletos.isEmpty()}">
+                    <thead>
+                    <tr>
+                        <th>Código de Barras</th>
+                        <th>Data de Emissão </th>
+                        <th>Data Vencimento</th>
+                        <th colspan="2">Acao</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="boleto : ${boletos}">
+                        <td th:text="${boleto.codigoBarra}">codigoBarra</td>
+                        <td th:text="${boleto.dataEmissao}">dataEmissao</td>
+                        <td th:text="${boleto.dataVencimento}">dataVencimento</td>
+                        <td><a th:href="@{'/boleto/edit/' + ${boleto.id}}">Editar</a></td>
+                        <td><a th:href="@{'/boleto/delete/' + ${boleto.id}}">Excluir</a></td>
+                    </tr>
+                </table>
+                <h2 th:unless="${!boletos.isEmpty()}">Sem Boletos</h2>
+
+                <button class="btn btn-default"><a style="text-decoration: none"
+                                                   th:href="@{'~/boleto/add/'}">Adicionar</a></button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
