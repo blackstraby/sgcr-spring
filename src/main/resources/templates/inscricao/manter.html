@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">Inscrição</title>
+</head>
+
+<body>
+<div class="container corpo">
+    <br><br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h5 class="card-header" th:text="${title}">Inscrição</h5>
+                <div class="card-body">
+                    <form th:object="${inscricao}" method="post">
+                        <div class="form-group">
+                            <label for="dataCompra">Data Compra:</label>
+                            <input type="date" class="form-control" id="dataCompra" name="dataCompra" required
+                                   th:value="${inscricao?.dataCompra}" th:disabled="${operacao} == deletar"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numeroPeito">Nº Peito:</label>
+                            <input type="text" class="form-control" id="numeroPeito" name="numeroPeito" required
+                                   th:value="${inscricao?.numeroPeito}" th:disabled="${operacao} == deletar"/>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <select class="form-control custom-select" name="corrida" id="corrida" th:disabled="${operacao} == deletar">
+                                <option value="" class="d-none">Selecione um Corrida...</option>
+                                <option th:if="${operacao} == adicionar" th:each="corrida : ${corridas}"
+                                        th:value="${corrida.id}" th:text="${corrida.nome}"></option>
+
+                                <option th:if="${operacao} != adicionar" th:each="corrida : ${corridas}"
+                                        th:value="${corrida?.id}"   th:text="${corrida.nome}"
+                                        th:selected="${corrida?.id==inscricao?.corrida.getId()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <select class="form-control custom-select" name="atleta" id="atleta" th:disabled="${operacao} == deletar">
+                                <option value="" class="d-none">Selecione um Atleta...</option>
+                                <option th:if="${operacao} == adicionar" th:each="atleta : ${atletas}"
+                                        th:value="${atleta.id}" th:text="${atleta.nome}"></option>
+
+                                <option th:if="${operacao} != adicionar" th:each="atleta : ${atletas}"
+                                        th:value="${atleta?.id}"   th:text="${atleta.nome}"
+                                        th:selected="${atleta?.id==inscricao?.atleta.getId()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <select class="form-control custom-select" name="percurso" id="percurso" th:disabled="${operacao} == deletar">
+                                <option value="" class="d-none">Selecione um Percurso...</option>
+                                <option th:if="${operacao} == adicionar" th:each="percurso : ${percursos}"
+                                        th:value="${percurso.id}" th:text="${percurso.quilometragem + 'km'}"></option>
+
+                                <option th:if="${operacao} != adicionar" th:each="percurso : ${percursos}"
+                                        th:value="${percurso?.id}"   th:text="${percurso.quilometragem + 'km'}"
+                                        th:selected="${percurso?.id==inscricao?.percurso.getId()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <select class="form-control custom-select" name="lote" id="lote" th:disabled="${operacao} == deletar">
+                                <option value="" class="d-none">Selecione um Lote...</option>
+                                <option th:if="${operacao} == adicionar" th:each="lote : ${lotes}"
+                                        th:value="${lote.id}" th:text="${lote.tipo} + ' - R$ ' + ${lote.preco}"></option>
+
+                                <option th:if="${operacao} != adicionar" th:each="lote : ${lotes}"
+                                        th:value="${lote?.id}"   th:text="${lote.tipo} + ' - R$ ' + ${lote.preco}"
+                                        th:selected="${lote?.id==inscricao?.lote.getId()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <select class="form-control custom-select" name="kit" id="kit" th:disabled="${operacao} == deletar">
+                                <option value="" class="d-none">Selecione um Kit...</option>
+                                <option th:if="${operacao} == adicionar" th:each="kit : ${kits}"
+                                        th:value="${kit.id}" th:text="${kit.nome}"></option>
+
+                                <option th:if="${operacao} != adicionar" th:each="kit : ${kits}"
+                                        th:value="${kit?.id}"   th:text="${kit.nome}"
+                                        th:selected="${kit?.id==inscricao?.kit.getId()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <a href="/inscricao/" class="btn btn-danger">Cancelar</a>
+                            <input type="submit" class="btn btn-success" th:value="${botaoOperacao}" name="btnConfirmar"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
