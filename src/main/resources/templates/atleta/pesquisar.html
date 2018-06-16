@@ -23,7 +23,7 @@
                         <th>Data Nascimento</th>
                         <th>Tamanho Camisa</th>
                         <th>Celular</th>
-                        <th colspan="2">Acao</th>
+                        <th colspan="2" class="center">Acao</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,8 +40,7 @@
                 </table>
                 <h2 th:unless="${!atletas.isEmpty()}">Sem Atletas</h2>
 
-                <button class="btn btn-default"><a style="text-decoration: none"
-                                                   th:href="@{'~/atleta/add/'}">Adicionar</a></button>
+                <a class="btn btn-primary" th:href="@{'~/atleta/add/'}">Adicionar</a>
 
 
             </div>

@@ -22,7 +22,7 @@ public class AdministradorController {
         model.addAttribute("operacao", "listar");
         model.addAttribute("title", "Lista Administrador");
         model.addAttribute("botaoOperacao", "Listar Admin");
-        return "administrador/pesquisaAdministrador";
+        return "administrador/pesquisar";
     }
 
     @GetMapping(value = "add")
@@ -30,7 +30,7 @@ public class AdministradorController {
         model.addAttribute("operacao", "adicionar");
         model.addAttribute("title", "Adicionar Administrador");
         model.addAttribute("botaoOperacao", "Adicionar Administrador");
-        return "administrador/manterAdministrador";
+        return "administrador/manter";
     }
 
     @PostMapping(value = "add")
@@ -48,7 +48,7 @@ public class AdministradorController {
         if (admin.isPresent()) {
             model.addAttribute("administrador", admin.get());
         }
-        return "administrador/manterAdministrador";
+        return "administrador/manter";
     }
 
     @PostMapping(value = "edit/{id}")
@@ -71,7 +71,7 @@ public class AdministradorController {
         if (admin.isPresent()) {
             model.addAttribute("administrador", admin.get());
         }
-        return "administrador/manterAdministrador";
+        return "administrador/manter";
     }
 
     @PostMapping(value = "delete/{id}")

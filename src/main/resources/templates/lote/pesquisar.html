@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:replace="fragments :: head">
-        <meta charset="UTF-8"/>
-        <title th:text="${title}"> Lote </title>
-    </head>
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"> Lote </title>
+</head>
 <body>
 
 <div class="container corpo">
@@ -39,13 +39,7 @@
                     </tr>
                 </table>
                 <h2 th:unless="${!lotes.isEmpty()}">Sem Lotes</h2>
-
-                <button class="btn btn-default">
-                    <a style="text-decoration: none"
-                       th:href="@{'~/lote/add/'}">Adicionar</a>
-                </button>
-
-
+                <a th:href="@{'~/lote/add/'}" class="btn btn-primary"> Adicionar</a>
             </div>
         </div>
     </div>

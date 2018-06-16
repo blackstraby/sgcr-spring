@@ -7,70 +7,79 @@
 <body>
 
 <div class="container corpo">
+    <br><br>
     <div class="row">
-        <h1 th:text="${title}"> Operação </h1>
-
         <div class="col-md-12">
-            <div class="panel panel-primary">
-                <form th:object="${kit}" method="post">
+            <div class="card">
+                <h5 class="card-header" th:text="${title}">Kit</h5>
+                <div class="card-body">
+                    <form th:object="${kit}" method="post">
 
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="nome">Nome:</label>
-                            <input type="text" required class="form-control" id="nome" name="nome"
-                                   th:value="${kit?.nome}" th:disabled="${operacao} == deletar"/>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="nome">Nome:</label>
+                                <input type="text" required class="form-control" id="nome" name="nome"
+                                       th:value="${kit?.nome}" th:disabled="${operacao} == deletar"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="descricao">Descrição:</label>
+                                <input type="text" required class="form-control" id="descricao"
+                                       name="descricao" th:value="${kit?.descricao}"
+                                       th:disabled="${operacao} == deletar"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="imagem">Imagem:</label>
+                                <input type="file" required class="form-control" id="imagem"
+                                       name="imagem" th:value="${kit?.imagem}"
+                                       th:disabled="${operacao} == deletar"/>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="descricao">Descrição:</label>
-                            <input type="text" required class="form-control" id="descricao"
-                                   name="descricao" th:value="${kit?.descricao}"
-                                   th:disabled="${operacao} == deletar"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="imagem">Imagem:</label>
-                            <input type="file" required class="form-control" id="imagem"
-                                   name="imagem" th:value="${kit?.imagem}"
-                                   th:disabled="${operacao} == deletar"/>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                        <div class="col-md-4">
 
-                        <div class="form-group">
-                            <label for="tipoChip">Tipo Chip:</label>
-                            <input type="text" required class="form-control" id="tipoChip"
-                                   name="tipoChip" th:value="${kit?.tipoChip}"
-                                   th:disabled="${operacao} == deletar"/>
+                            <div class="form-group">
+                                <label for="tipoChip">Tipo Chip:</label>
+                                <select name="tipoChip" id="tipoChip" class="form-control"
+                                        th:disabled="${operacao} == deletar" required>
+                                    <option th:selected="${kit?.tipoChip}  == 'Retornavel'" value="Retornavel">
+                                        Retornavel
+                                    </option>
+                                    <option th:selected="${kit?.tipoChip}  == 'Discartavel'" value="Discartavel">
+                                        Discartavel
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="preco">Preço:</label>
+                                <input type="number" required class="form-control" id="preco"
+                                       name="preco" th:value="${kit?.preco}"
+                                       th:disabled="${operacao} == deletar"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="organizador">Organizador:</label>
+                                <select name="organizador" id="organizador" th:disabled="${operacao} == deletar">
+                                    <option th:if="${operacao} == adicionar" th:each="organizador : ${organizadores}"
+                                            th:value="${organizador.id}" th:text="${organizador.nome}"></option>
+
+                                    <option th:if="${operacao} != adicionar" th:each="organizador : ${organizadores}"
+                                            th:value="${organizador?.id}" th:text="${organizador.nome}"
+                                            th:selected="${organizador?.id==kit.organizador.getId()}"></option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <a href="/kit/" btn btn-danger style="text-decoration: none">
+                                    Cancelar
+                                </a>
+
+                                <input type="submit" class="btn btn-success" th:value="${botaoOperacao}"
+                                       name="btnConfirmar"/>
+
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="preco">Preço:</label>
-                            <input type="number" required class="form-control" id="preco"
-                                   name="preco" th:value="${kit?.preco}"
-                                   th:disabled="${operacao} == deletar"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="organizador">Organizador:</label>
-                            <select name="organizador" id="organizador" th:disabled="${operacao} == deletar">
-                                <option th:if="${operacao} == adicionar" th:each="organizador : ${organizadores}"
-                                        th:value="${organizador.id}" th:text="${organizador.nome}"></option>
-
-                                <option th:if="${operacao} != adicionar" th:each="organizador : ${organizadores}"
-                                        th:value="${organizador?.id}" th:text="${organizador.nome}"
-                                        th:selected="${organizador?.id==kit.organizador.getId()}"></option>
-                            </select>
-                        </div>
-
-
-                        <div class="form-group">
-                            <a href="/kit/" style="text-decoration: none">
-                                <button type="button" class="btn btn-danger">Cancelar</button>
-                            </a>
-
-                            <input type="submit" class="btn btn-success" th:value="${botaoOperacao}"
-                                   name="btnConfirmar"/>
-
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

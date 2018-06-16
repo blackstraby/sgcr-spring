@@ -35,13 +35,7 @@
                     </tr>
                 </table>
                 <h2 th:unless="${!percursos.isEmpty()}">Sem Percursos</h2>
-
-                <button class="btn btn-default">
-                    <a style="text-decoration: none"
-                       th:href="@{'~/percurso/add/'}">Adicionar</a>
-                </button>
-
-
+                <a th:href="@{'~/percurso/add/'}" class="btn btn-primary"> Adicionar</a>
             </div>
         </div>
     </div>

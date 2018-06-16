@@ -23,7 +23,7 @@ public class AtletaController {
         model.addAttribute("botaoOperacao", "Listar Atleta");
 
         model.addAttribute("atletas", corredorRepository.findAll());
-        return "atleta/pesquisaAtleta";
+        return "atleta/pesquisar";
     }
 
     @GetMapping(value = "add")
@@ -32,7 +32,7 @@ public class AtletaController {
         model.addAttribute("title", "Adicionar atleta");
         model.addAttribute("botaoOperacao", "Adicionar Atleta");
 
-        return "atleta/manterAtleta";
+        return "atleta/manter";
     }
 
     @PostMapping(value = "add")
@@ -51,7 +51,7 @@ public class AtletaController {
         if (corredor.isPresent()) {
             model.addAttribute("atleta", corredor.get());
         }
-        return "atleta/manterAtleta";
+        return "atleta/manter";
     }
 
     @PostMapping(value = "edit/{id}") // site.com/atleta/edit/1/
@@ -74,7 +74,7 @@ public class AtletaController {
         if (corredor.isPresent()) {
             model.addAttribute("atleta", corredor.get());
         }
-        return "atleta/manterAtleta";
+        return "atleta/manter";
     }
 
     @PostMapping(value = "delete/{id}")

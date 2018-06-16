@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments :: head">
-        <meta charset="UTF-8"/>
-        <title th:text="${title}"> Administrador </title>
-    </head>
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"> Administrador </title>
+</head>
 <body>
 
 <div class="container corpo">
@@ -32,8 +32,7 @@
                 </table>
                 <h2 th:unless="${!administradores.isEmpty()}">Sem Administradores</h2>
 
-                <button class="btn btn-default"><a  style="text-decoration: none" th:href="@{'~/administrador/add/'}">Adicionar</a> </button>
-
+                <a class="btn btn-primary" th:href="@{'~/administrador/add/'}">Adicionar</a>
             </div>
         </div>
     </div>

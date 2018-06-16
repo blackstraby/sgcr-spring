@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments :: head">
-        <meta charset="UTF-8"/>
-        <title th:text="${title}"> Kit </title>
-    </head>
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"> Kit </title>
+</head>
 <body>
 
 <div class="container corpo">
@@ -41,10 +41,7 @@
                 </table>
                 <h2 th:unless="${!kits.isEmpty()}">Sem Kits</h2>
 
-                <button class="btn btn-default">
-                    <a style="text-decoration: none"
-                       th:href="@{'~/kit/add/'}">Adicionar</a>
-                </button>
+                <a class="btn btn-primary" th:href="@{'~/kit/add/'}">Adicionar</a>
 
 
             </div>
