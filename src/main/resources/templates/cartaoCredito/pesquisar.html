@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments :: head">
+        <meta charset="UTF-8"/>
+        <title th:text="${title}"> Cartão de Credito </title>
+    </head>
+<body>
+
+<div class="container corpo">
+    <div class="row">
+        <h1 th:text="${title}">Cartão de Credito</h1>
+
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <table class="table table-hover table-responsive" th:if="${!cartaoCreditos.isEmpty()}">
+                    <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Código de Segurança </th>
+                        <th>Validade</th>
+                        <th>Nome do Titular</th>
+                        <th colspan="2">Acao</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cartaoCredito : ${cartaoCreditos}">
+                        <td th:text="${cartaoCredito.numero}">numero</td>
+                        <td th:text="${cartaoCredito.codigoSeguranca}">codigoSeguranca</td>
+                        <td th:text="${cartaoCredito.validade}">validade</td>
+                        <td th:text="${cartaoCredito.nomeTitular}">nomeTitular</td>
+                        <td><a th:href="@{'/cartaoCredito/edit/' + ${cartaoCredito.id}}">Editar</a></td>
+                        <td><a th:href="@{'/cartaoCredito/delete/' + ${cartaoCredito.id}}">Excluir</a></td>
+                    </tr>
+                </table>
+                <h2 th:unless="${!cartaoCreditos.isEmpty()}">Sem Cartões de Credito</h2>
+
+                <button class="btn btn-default"><a style="text-decoration: none"
+                                                   th:href="@{'~/cartaoCredito/add/'}">Adicionar</a></button>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
