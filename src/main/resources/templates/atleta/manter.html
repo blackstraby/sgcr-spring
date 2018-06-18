@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-    <head th:replace="fragments :: head">
-        <meta charset="UTF-8"/>
-        <title>Atleta</title>
-        <script src="/js/myscript.js"></script>
-    </head>
-<body>
-
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title>Atleta</title>
+    <script src="/js/myscript.js"></script>
+</head>
+<body class="sticky-footer bg-dark" id="page-top">
+<br>
 <div class="container corpo">
-    <br><br>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <h5 class="card-header" th:text="${title}">Atleta</h5>
                 <div class="card-body">
                     <form th:object="${atleta}" method="post">
-
+                        <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="nome">Nome Completo:</label>
@@ -33,7 +32,7 @@
                                 <input type="text" required class="form-control" id="dtNasc"
                                        placeholder="__/__/____" onkeypress="mascaraData(this, event)"
                                        name="dataNascimento" th:value="${atleta?.dataNascimento}"
-                                       th:disabled="${operacao} == deletar" />
+                                       th:disabled="${operacao} == deletar"/>
                             </div>
                             <div class="form-group">
                                 <label for="apelido">Apelido:</label>
@@ -147,6 +146,7 @@
                                        name="btnConfirmar"/>
 
                             </div>
+                        </div>
                         </div>
                     </form>
                 </div>
