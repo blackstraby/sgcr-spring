@@ -14,7 +14,7 @@ import java.util.Optional;
 public class AtletaController {
 
     @Autowired
-    private AtletaRepository corredorRepository;
+    private AtletaRepository atletaRepository;
 
     @GetMapping(value = "")
     public String corredores(Model model) {
@@ -22,7 +22,7 @@ public class AtletaController {
         model.addAttribute("title", "Lista Atleta");
         model.addAttribute("botaoOperacao", "Listar Atleta");
 
-        model.addAttribute("atletas", corredorRepository.findAll());
+        model.addAttribute("atletas", atletaRepository.findAll());
         return "atleta/pesquisar";
     }
 
@@ -37,13 +37,13 @@ public class AtletaController {
 
     @PostMapping(value = "add")
     public String processCorredorForm(@ModelAttribute Atleta corredor) {
-        corredorRepository.save(corredor);
+        atletaRepository.save(corredor);
         return "redirect:/atleta";
     }
 
     @GetMapping(value = "edit/{id}") // site.com/atleta/edit
     public String corredorEdit(Model model, @PathVariable Long id) {
-        Optional<Atleta> corredor = corredorRepository.findById(id);
+        Optional<Atleta> corredor = atletaRepository.findById(id);
         model.addAttribute("operacao", "editar");
         model.addAttribute("title", "Editar atleta");
         model.addAttribute("botaoOperacao", "Editar Atleta");
@@ -58,7 +58,7 @@ public class AtletaController {
     public String edit(@ModelAttribute Atleta corredor, Model model,
                        @PathVariable Long id) throws Exception {
         if (id.equals(corredor.getId())) {
-            corredorRepository.save(corredor);
+            atletaRepository.save(corredor);
         } else {
             model.addAttribute("error", "Dados incorretos");
         }
@@ -67,7 +67,7 @@ public class AtletaController {
 
     @GetMapping(value = "delete/{id}") // site.com/atleta/delete/1
     public String corredorDelete(Model model, @PathVariable Long id) {
-        Optional<Atleta> corredor = corredorRepository.findById(id);
+        Optional<Atleta> corredor = atletaRepository.findById(id);
         model.addAttribute("operacao", "deletar");
         model.addAttribute("title", "Excluir atleta");
         model.addAttribute("botaoOperacao", "Excluir Atleta");
@@ -79,7 +79,15 @@ public class AtletaController {
 
     @PostMapping(value = "delete/{id}")
     public String delete(@PathVariable Long id, @ModelAttribute Atleta corredor) {
-        corredorRepository.delete(corredor);
+        atletaRepository.delete(corredor);
         return "redirect:/atleta";
+    }
+    @RequestMapping(value="/busca")
+    public String busca(Model model,@RequestParam("nome") String nome){
+       model.addAttribute("atletas",atletaRepository.findByNomeContaining(nome));
+        model.addAttribute("operacao", "buscar");
+        model.addAttribute("title", "Busca Atleta");
+        model.addAttribute("botaoOperacao", "buscar Atleta");
+        return "atleta/pesquisar";
     }
 }

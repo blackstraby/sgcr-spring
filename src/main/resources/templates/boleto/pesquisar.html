@@ -32,6 +32,7 @@
                         <td><a th:href="@{'/boleto/delete/' + ${boleto.id}}">Excluir</a></td>
                     </tr>
                 </table>
+
                 <h2 th:unless="${!boletos.isEmpty()}">Sem Boletos</h2>
 
                 <a class="btn btn-primary" th:href="@{'~/boleto/add/'}">Adicionar</a>
