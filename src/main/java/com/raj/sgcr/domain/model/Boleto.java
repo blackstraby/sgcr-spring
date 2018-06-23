@@ -8,16 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Accessors(chain = true)
 public class Boleto extends Pagamento implements Serializable {
-    @Id
-    @GeneratedValue
-    private Long id;
+
     private String codigoBarra;
     private String dataEmissao;
     private String dataVencimento;
+
+    @OneToMany(mappedBy = "boleto")
+    private Set<Inscricao> inscricao;
 }

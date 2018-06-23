@@ -1,5 +1,6 @@
 package com.raj.sgcr.domain.model;
 
+import com.raj.sgcr.controller.CartaoCreditoController;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -32,5 +33,7 @@ public class Inscricao implements Serializable {
     @ManyToOne
     private Kit kit;
     @ManyToOne
-    private Pagamento pagamento;
+    private Boleto boleto;
+    @ManyToOne
+    private CartaoCredito cartaoCredito;
 }
