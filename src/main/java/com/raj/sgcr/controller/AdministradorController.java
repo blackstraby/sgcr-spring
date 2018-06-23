@@ -2,11 +2,19 @@ package com.raj.sgcr.controller;
 
 import com.raj.sgcr.domain.model.Administrador;
 import com.raj.sgcr.domain.repository.AdministradorRepository;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -77,6 +85,23 @@ public class AdministradorController {
     @PostMapping(value = "delete/{id}")
     public String delete(@PathVariable Long id, @ModelAttribute Administrador admin) {
         adminRepository.delete(admin);
+        return "redirect:/administrador";
+    }
+
+    @GetMapping(value = "report")
+    @ResponseBody
+    public String getRpt1(HttpServletResponse response) throws JRException, IOException {
+        InputStream jasperStream = this.getClass().getResourceAsStream("/reports/report_atleta.jasper");
+        Map<String,Object> params = new HashMap<>();
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());
+
+        response.setContentType("application/x-pdf");
+        response.setHeader("Content-disposition", "inline; filename=report_atleta.pdf");
+
+        final OutputStream outStream = response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+
         return "redirect:/administrador";
     }
 }
