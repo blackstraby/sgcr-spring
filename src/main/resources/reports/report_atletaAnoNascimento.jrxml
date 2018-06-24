@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_atletaAnoNascimento" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0022d2df-567b-414e-808f-1d9792ae0413">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<parameter name="P_anoNascimento" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.atleta.nome,
-	sgcr.atleta.data_nascimento, 
-	sgcr.atleta.cpf,
-	sgcr.atleta.estado,
-	sgcr.atleta.cidade
-FROM sgcr.atleta
+		<![CDATA[SELECT sgcr2.atleta.nome,
+	sgcr2.atleta.data_nascimento, 
+	sgcr2.atleta.cpf,
+	sgcr2.atleta.estado,
+	sgcr2.atleta.cidade
+FROM sgcr2.atleta
 
-WHERE sgcr.atleta.data_nascimento LIKE '%$P!{P_anoNascimento}%']]>
+WHERE sgcr2.atleta.data_nascimento LIKE '%$P!{P_anoNascimento}%']]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>

@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -23,6 +26,8 @@ public class AdministradorController {
 
     @Autowired
     private AdministradorRepository adminRepository;
+
+    private RelatorioController relatorioAdministrador;
 
     @GetMapping(value = "")
     public String administradores(Model model) {
@@ -88,20 +93,4 @@ public class AdministradorController {
         return "redirect:/administrador";
     }
 
-    @GetMapping(value = "report")
-    @ResponseBody
-    public String getRpt1(HttpServletResponse response) throws JRException, IOException {
-        InputStream jasperStream = this.getClass().getResourceAsStream("/reports/report_atleta.jasper");
-        Map<String,Object> params = new HashMap<>();
-        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());
-
-        response.setContentType("application/x-pdf");
-        response.setHeader("Content-disposition", "inline; filename=report_atleta.pdf");
-
-        final OutputStream outStream = response.getOutputStream();
-        JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
-
-        return "redirect:/administrador";
-    }
 }

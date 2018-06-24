@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_atletaEmail" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ebe77123-53a9-4f88-a718-827de83532b9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<parameter name="P_email" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.atleta.nome,
-	sgcr.atleta.apelido,
-	sgcr.atleta.cpf,
-	sgcr.atleta.sexo,
-	sgcr.atleta.email
-FROM sgcr.atleta
+		<![CDATA[SELECT sgcr2.atleta.nome,
+	sgcr2.atleta.apelido,
+	sgcr2.atleta.cpf,
+	sgcr2.atleta.sexo,
+	sgcr2.atleta.email
+FROM sgcr2.atleta
 
-WHERE  sgcr.atleta.email LIKE '%$P!{P_email}%']]>
+WHERE  sgcr2.atleta.email LIKE '%$P!{P_email}%']]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_atletaCamisaGroupBy2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d032de4a-204e-4b61-a7fa-352d90e334f9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.atleta.nome,
-	sgcr.atleta.sexo,
-	sgcr.atleta.cpf,
-	sgcr.atleta.tamanho_camisa
-FROM sgcr.atleta ORDER BY 	sgcr.atleta.tamanho_camisa, 	sgcr.atleta.sexo DESC]]>
+		<![CDATA[SELECT sgcr2.atleta.nome,
+	sgcr2.atleta.sexo,
+	sgcr2.atleta.cpf,
+	sgcr2.atleta.tam_camisa
+FROM sgcr2.atleta ORDER BY 	sgcr2.atleta.tam_camisa, 	sgcr2.atleta.sexo DESC]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
@@ -22,12 +22,12 @@ FROM sgcr.atleta ORDER BY 	sgcr.atleta.tamanho_camisa, 	sgcr.atleta.sexo DESC]]>
 		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="atleta"/>
 	</field>
-	<field name="tamanho_camisa" class="java.lang.String">
+	<field name="tam_camisa" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="tamanho_camisa"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="atleta"/>
 	</field>
 	<group name="Group1">
-		<groupExpression><![CDATA[$F{tamanho_camisa}]]></groupExpression>
+		<groupExpression><![CDATA[$F{tam_camisa}]]></groupExpression>
 		<groupHeader>
 			<band height="33">
 				<staticText>
@@ -42,7 +42,7 @@ FROM sgcr.atleta ORDER BY 	sgcr.atleta.tamanho_camisa, 	sgcr.atleta.sexo DESC]]>
 					<textElement>
 						<font size="24" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{tamanho_camisa}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{tam_camisa}]]></textFieldExpression>
 				</textField>
 				<line>
 					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="a5edc6c2-16f9-4559-90b1-2f7bbbb083bc"/>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head">
     <title>Home</title>
     <meta charset="utf-8">
@@ -11,6 +11,7 @@
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
+<<<<<<< HEAD
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="index.html">SGCR - SPRING</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -281,6 +282,9 @@
         </ul>
     </div>
 </nav>
+=======
+<nav th:replace="fragments :: nav"></nav>
+>>>>>>> f4908a55796e6c2bb067c78b02230147221b6114
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -728,7 +732,7 @@
 
 </div>
 
-<div th:replace="fragments :: div"/>
+<div th:replace="fragments :: div"></div>
 
 </body>
 </html>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_atletaTamanhoCamisa" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3ce201c4-ce35-49d4-87a2-90f1502b5a86">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<parameter name="P_tamanhoCamisa" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.atleta.nome,
-	sgcr.atleta.cpf,
-	sgcr.atleta.tamanho_camisa,
-	sgcr.atleta.sexo,
-	sgcr.atleta.estado
-FROM sgcr.atleta
-WHERE sgcr.atleta.tamanho_camisa =  $P{P_tamanhoCamisa} ]]>
+		<![CDATA[SELECT sgcr2.atleta.nome,
+	sgcr2.atleta.cpf,
+	sgcr2.atleta.tam_camisa,
+	sgcr2.atleta.sexo,
+	sgcr2.atleta.estado
+FROM sgcr2.atleta
+WHERE sgcr2.atleta.tam_camisa =  $P{P_tamanhoCamisa}]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
@@ -21,7 +21,7 @@ WHERE sgcr.atleta.tamanho_camisa =  $P{P_tamanhoCamisa} ]]>
 		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="atleta"/>
 	</field>
-	<field name="tamanho_camisa" class="java.lang.String">
+	<field name="tam_camisa" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="tamanho_camisa"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="atleta"/>
 	</field>
@@ -142,7 +142,7 @@ WHERE sgcr.atleta.tamanho_camisa =  $P{P_tamanhoCamisa} ]]>
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tamanho_camisa}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tam_camisa}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="450" y="-1" width="30" height="20" uuid="8cce3a0a-6529-4ac4-90e0-93c8143fb46f">

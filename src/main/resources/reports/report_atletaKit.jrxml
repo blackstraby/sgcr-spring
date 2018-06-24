@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_atletaKit" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec2553f5-9ca6-43db-b317-9fe66788390d">
 	<property name="com.jaspersoft.studio.data.sql.tables">
 		<![CDATA[c2djci5hdGxldGEgQVMgLDY3NSw0OSxlZWMwMTgzOS00MzkyLTQ0NDItYjI2YS01YjZhZWNjOTNl
@@ -9,18 +9,18 @@ NzhhYmExOTs=]]>
 	</property>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="356"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="644"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR maria"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.kit.nome,
-	sgcr.atleta.id,
-	sgcr.atleta.nome,
-	sgcr.atleta.email,
-	sgcr.inscricao.id
-FROM sgcr.inscricao
-	INNER JOIN sgcr.kit ON 
-	 sgcr.inscricao.kit_id = sgcr.kit.id 
+		<![CDATA[SELECT sgcr2.kit.nome,
+	sgcr2.atleta.id,
+	sgcr2.atleta.nome,
+	sgcr2.atleta.email,
+	sgcr2.inscricao.id
+FROM sgcr2.inscricao
+	INNER JOIN sgcr2.kit ON 
+	 sgcr2.inscricao.kit_id = sgcr2.kit.id 
 	INNER JOIN sgcr.atleta ON 
-	 sgcr.inscricao.atleta_id = sgcr.atleta.id]]>
+	 sgcr2.inscricao.atleta_id = sgcr2.atleta.id]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>

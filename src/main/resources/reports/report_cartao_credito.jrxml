@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple_Blue_2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="af53331c-4c42-4bb8-b507-4fa7a3638045">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR maria"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.cartao_credito.numero,
-	sgcr.cartao_credito.validade,
-	sgcr.cartao_credito.inscricao_id,
-	sgcr.cartao_credito.codigo_seguranca,
-	sgcr.cartao_credito.inscricao_corrida_id,
-	sgcr.cartao_credito.nome_titular,
-	sgcr.cartao_credito.id
-FROM sgcr.cartao_credito]]>
+		<![CDATA[SELECT
+	sgcr2.cartao_credito.validade,
+	sgcr2.cartao_credito.codigo_seguranca,
+	sgcr2.cartao_credito.nome_titular,
+	sgcr2.cartao_credito.id
+FROM sgcr2.cartao_credito]]>
 	</queryString>
-	<field name="numero" class="java.lang.String">
+	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="numero"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="cartao_credito"/>
 	</field>
@@ -68,7 +66,7 @@ FROM sgcr.cartao_credito]]>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[numero]]></text>
+				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4362cc35-8f03-4df0-bc8d-6089ae1a8fa7">
@@ -105,13 +103,13 @@ FROM sgcr.cartao_credito]]>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="75cc472e-ac07-4ca9-9c0a-cffa93c27b45"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="138" height="20" uuid="13b583a5-a583-41be-932e-09980e5d89f6">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="138" height="20" uuid="13b583a5-a583-41be-932e-09980e5d89f6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c5d5b93e-9862-44d6-a0b4-4a8816742b4b"/>
 				</reportElement>
 				<textElement>
-					<font size="14"/>
+					<font size="15"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="138" y="0" width="138" height="20" uuid="4947860d-bb18-4bf7-9bc7-e52e9b001720">

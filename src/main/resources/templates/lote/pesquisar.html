@@ -5,49 +5,62 @@
     <meta charset="UTF-8"/>
     <title th:text="${title}"> Lote </title>
 </head>
-<body>
 
-<div class="container corpo">
-    <div class="row">
-        <h1 th:text="${title}">Lote</h1>
-        <div class="col-md-12">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
-                           th:if="${!lotes.isEmpty()}">
-                        <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Tipo</th>
-                            <th>Preço</th>
-                            <th>Data Inicio</th>
-                            <th>Data Final</th>
-                            <th>Corrida</th>
-                            <th colspan="2" class="text-center"> Ação</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="lote : ${lotes}">
-                            <td th:text="${lote.id}"></td>
-                            <td th:text="${lote.tipo}"></td>
-                            <td th:text="${lote.preco}"></td>
-                            <td th:text="${lote.dataInicio}"></td>
-                            <td th:text="${lote.dataFinal}"></td>
-                            <td th:text="${lote.corrida.nome}"></td>
 
-                            <td class="text-center"><a th:href="@{'/lote/edit/' + ${lote.id}}">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a></td>
-                            <td class="text-center"><a th:href="@{'/lote/delete/' + ${lote.id}}">
-                                <i class="fa fa-trash" aria-hidden="true"></i> Excluir</a></td>
-                        </tr>
-                    </table>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="${title}"></span></li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                               th:if="${!lotes.isEmpty()}">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Tipo</th>
+                                <th>Preço</th>
+                                <th>Data Inicio</th>
+                                <th>Data Final</th>
+                                <th>Corrida</th>
+                                <th colspan="2" class="text-center"> Ação</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="lote : ${lotes}">
+                                <td th:text="${lote.id}"></td>
+                                <td th:text="${lote.tipo}"></td>
+                                <td th:text="${lote.preco}"></td>
+                                <td th:text="${lote.dataInicio}"></td>
+                                <td th:text="${lote.dataFinal}"></td>
+                                <td th:text="${lote.corrida.nome}"></td>
+
+                                <td class="text-center"><a th:href="@{'/lote/edit/' + ${lote.id}}">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a></td>
+                                <td class="text-center"><a th:href="@{'/lote/delete/' + ${lote.id}}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Excluir</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h2 th:unless="${!lotes.isEmpty()}">Sem Lotes</h2>
+                    <a th:href="@{'~/lote/add/'}" class="btn btn-primary"> Adicionar</a>
+                    <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
                 </div>
-                <h2 th:unless="${!lotes.isEmpty()}">Sem Lotes</h2>
-                <a th:href="@{'~/lote/add/'}" class="btn btn-primary"> Adicionar</a>
-                <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
             </div>
         </div>
     </div>
 </div>
+<div th:replace="fragments :: div"></div>
+
+</div>
 </body>
+
 </html>

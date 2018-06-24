@@ -5,45 +5,57 @@
     <meta charset="UTF-8"/>
     <title th:text="${title}"> Percurso </title>
 </head>
-<body>
 
-<div class="container corpo">
-    <div class="row">
-        <h1 th:text="${title}">Percurso</h1>
-        <div class="col-md-12">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
-                           th:if="${!percursos.isEmpty()}">
-                        <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Km</th>
-                            <th>Descrição</th>
-                            <th>Organizador</th>
-                            <th colspan="2" class="text-center"> Ação</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="percurso : ${percursos}">
-                            <td th:text="${percurso.id}">Codigo</td>
-                            <td th:text="${percurso.quilometragem}">Km</td>
-                            <td th:text="${percurso.descricao}">Descrição</td>
-                            <td th:text="${percurso.organizador.nome}">Organizador</td>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="${title}"></span></li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                               th:if="${!percursos.isEmpty()}">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Km</th>
+                                <th>Descrição</th>
+                                <th>Organizador</th>
+                                <th colspan="2" class="text-center"> Ação</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="percurso : ${percursos}">
+                                <td th:text="${percurso.id}">Codigo</td>
+                                <td th:text="${percurso.quilometragem}">Km</td>
+                                <td th:text="${percurso.descricao}">Descrição</td>
+                                <td th:text="${percurso.organizador.nome}">Organizador</td>
 
-                            <td class="text-center"><a th:href="@{'/percurso/edit/' + ${percurso.id}}">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a></td>
-                            <td class="text-center"><a th:href="@{'/percurso/delete/' + ${percurso.id}}">
-                                <i class="fa fa-trash" aria-hidden="true"></i> Excluir</a></td>
-                        </tr>
-                    </table>
+                                <td class="text-center"><a th:href="@{'/percurso/edit/' + ${percurso.id}}">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a></td>
+                                <td class="text-center"><a th:href="@{'/percurso/delete/' + ${percurso.id}}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Excluir</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h2 th:unless="${!percursos.isEmpty()}">Sem Percursos</h2>
+                    <a th:href="@{'~/percurso/add/'}" class="btn btn-primary"> Adicionar</a>
+                    <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
                 </div>
-                <h2 th:unless="${!percursos.isEmpty()}">Sem Percursos</h2>
-                <a th:href="@{'~/percurso/add/'}" class="btn btn-primary"> Adicionar</a>
-                <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
             </div>
         </div>
     </div>
 </div>
+<div th:replace="fragments :: div"></div>
+
+</div>
 </body>
+
 </html>

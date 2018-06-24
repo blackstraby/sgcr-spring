@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report.corridaLote_2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="de4353af-35d1-4ca1-b9d2-f45366ed1d22">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR maria"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.corrida.bairro,
-	sgcr.corrida.numero,
-	sgcr.corrida.estado,
-	sgcr.corrida.horario,
-	sgcr.corrida.nome,
-	sgcr.corrida.max_pessoa,
-	sgcr.corrida.cidade,
-	sgcr.corrida.logradouro,
-	sgcr.corrida.edicao,
-	sgcr.corrida.banner,
-	sgcr.corrida.cep,
-	sgcr.corrida.data,
-	sgcr.corrida.organizador_id,
-	sgcr.corrida.ativo,
-	sgcr.corrida.data_inicio_retirada_kit,
-	sgcr.corrida.id,
-	sgcr.corrida.descricao,
-	sgcr.corrida.data_final_retirada_kit,
-	sgcr.lote.id,
-	sgcr.lote.tipo,
-	sgcr.lote.preco,
-	sgcr.lote.data_inicio,
-	sgcr.lote.data_final,
-	sgcr.lote.corrida_id
-FROM sgcr.corrida,
-	sgcr.lote]]>
+		<![CDATA[SELECT sgcr2.corrida.bairro,
+	sgcr2.corrida.numero,
+	sgcr2.corrida.estado,
+	sgcr2.corrida.horario,
+	sgcr2.corrida.nome,
+	sgcr2.corrida.max_pessoa,
+	sgcr2.corrida.cidade,
+	sgcr2.corrida.logradouro,
+	sgcr2.corrida.banner,
+	sgcr2.corrida.cep,
+	sgcr2.corrida.data,
+	sgcr2.corrida.organizador_id,
+	sgcr2.corrida.ativo,
+	sgcr2.corrida.data_inicio_retirada_kit,
+	sgcr2.corrida.id,
+	sgcr2.corrida.descricao,
+	sgcr2.corrida.data_final_retirada_kit,
+	sgcr2.lote.id,
+	sgcr2.lote.tipo,
+	sgcr2.lote.preco,
+	sgcr2.lote.data_inicio,
+	sgcr2.lote.data_final,
+	sgcr2.lote.corrida_id
+FROM sgcr2.corrida,
+	sgcr2.lote  ORDER by sgcr2.lote.data_final desc]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
