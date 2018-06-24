@@ -1,6 +1,8 @@
 package com.raj.sgcr.controller;
 
+import com.raj.sgcr.domain.model.Corrida;
 import com.raj.sgcr.domain.model.Organizador;
+import com.raj.sgcr.domain.repository.CorridaRepository;
 import com.raj.sgcr.domain.repository.OrganizadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class OrganizadorController {
     @Autowired
     private OrganizadorRepository organizadorRepository;
+    @Autowired
+    private CorridaRepository corridaRepository;
 
     @GetMapping(value = "")
     public String organizador(Model model) {
@@ -79,5 +83,25 @@ public class OrganizadorController {
     public String delete(@PathVariable Long id, @ModelAttribute Organizador organizador) {
         organizadorRepository.delete(organizador);
         return "redirect:/organizador";
+    }
+    @GetMapping(value = "busca")
+    public String busca(Model model) {
+        model.addAttribute("operacao", "busca");
+        model.addAttribute("title", "Busca");
+        model.addAttribute("botaoOperacao", "Buscar");
+
+        model.addAttribute("organizadores", organizadorRepository.findAll());
+        model.addAttribute("corridas", corridaRepository.findAll());
+        return "organizador/buscaCorridaOrganizador";
+    }
+    @RequestMapping(value = "/busca")
+    public String organizadorBusca(Model model,@RequestParam("organizador") Long id) {
+        model.addAttribute("operacao", "busca");
+        model.addAttribute("title", "Busca");
+        model.addAttribute("botaoOperacao", "Buscar");
+
+        model.addAttribute("organizadores", organizadorRepository.findAll());
+        model.addAttribute("corridas", corridaRepository.findByOrganizador(id));
+        return "organizador/buscaCorridaOrganizador";
     }
 }

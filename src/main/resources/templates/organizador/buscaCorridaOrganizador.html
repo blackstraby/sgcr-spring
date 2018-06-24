@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"> Corrida </title>
+</head>
+<body>
+
+<div class="container corpo">
+    <div class="row">
+        <h1 th:text="${title}">Corrida</h1>
+
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <form action="/organizador/busca" method="get">
+            <div class="form-group input-group">
+                <select class="form-control custom-select" name="organizador" id="organizador">
+                    <option value="" class="d-none">Selecione um Organizador...</option>
+                    <option th:if="${operacao} == busca" th:each="organizador : ${organizadores}"
+                            th:value="${organizador.id}" th:text="${organizador.nome}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+
+            <table class="table table-hover table-responsive" th:if="${!corridas.isEmpty()}">
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Máx Pessoas</th>
+                    <th colspan="2">Acão</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="corrida : ${corridas}">
+                    <td th:text="${corrida.id}">Codigo</td>
+                    <td th:text="${corrida.nome}">Nome</td>
+                    <td th:text="${corrida.maxPessoa}">Máx Pessoa</td>
+                    <td><a th:href="@{'/corrida/edit/' + ${corrida.id}}">Editar</a></td>
+                    <td><a th:href="@{'/corrida/delete/' + ${corrida.id}}">Excluir</a></td>
+                </tr>
+            </table>
+            <h2 th:unless="${!corridas.isEmpty()}">Sem Corridas</h2>
+
+            <a  class="btn btn-primary" th:href="@{'~/corrida/add/'}">Adicionar</a>
+
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
