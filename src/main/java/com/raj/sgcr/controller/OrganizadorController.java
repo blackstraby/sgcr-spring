@@ -87,21 +87,22 @@ public class OrganizadorController {
     @GetMapping(value = "busca")
     public String busca(Model model) {
         model.addAttribute("operacao", "busca");
-        model.addAttribute("title", "Busca");
+        model.addAttribute("title", "Busca Corrida");
         model.addAttribute("botaoOperacao", "Buscar");
 
         model.addAttribute("organizadores", organizadorRepository.findAll());
         model.addAttribute("corridas", corridaRepository.findAll());
         return "organizador/buscaCorridaOrganizador";
     }
-    @RequestMapping(value = "/busca")
+    @RequestMapping(value = "/buscarCorrida")
     public String organizadorBusca(Model model,@RequestParam("organizador") Long id) {
+        Optional<Organizador> organizador = organizadorRepository.findById(id);
         model.addAttribute("operacao", "busca");
-        model.addAttribute("title", "Busca");
+        model.addAttribute("title", "Busca Corrida");
         model.addAttribute("botaoOperacao", "Buscar");
 
         model.addAttribute("organizadores", organizadorRepository.findAll());
-        model.addAttribute("corridas", corridaRepository.findByOrganizador(id));
+        model.addAttribute("corridas", corridaRepository.findByOrganizador(organizador.get()));
         return "organizador/buscaCorridaOrganizador";
     }
 }

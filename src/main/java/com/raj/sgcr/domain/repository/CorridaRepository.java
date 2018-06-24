@@ -13,5 +13,5 @@ import java.util.Optional;
 public interface CorridaRepository extends CrudRepository<Corrida, Long> {
 
     //@Query(value="Select c from Corrida c where c.organizador.id = :id",nativeQuery = true)
-    Iterable<Corrida> findByOrganizador(Long id);
+    Iterable<Corrida> findByOrganizador(Organizador organizador);
 }
