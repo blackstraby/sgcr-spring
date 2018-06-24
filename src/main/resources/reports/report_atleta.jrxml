@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_atleta" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="454c0310-1092-479d-8d7c-aad116238c16">
 	<property name="ireport.zoom" value="1.771561000000001"/>
 	<property name="ireport.x" value="117"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR maria"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
      atleta.`id` AS atleta_id,
@@ -13,7 +13,7 @@
      atleta.`email` AS atleta_email,
      atleta.`senha` AS atleta_senha,
      atleta.`sexo` AS atleta_sexo,
-     atleta.`tamanho_camisa` AS atleta_tamanho_camisa,
+     atleta.`tam_camisa` AS atleta_tamanho_camisa,
      atleta.`data_nascimento` AS atleta_data_nascimento,
      atleta.`cpf` AS atleta_cpf,
      atleta.`cep` AS atleta_cep,
@@ -24,8 +24,7 @@
      atleta.`numero` AS atleta_numero,
      atleta.`complemento` AS atleta_complemento,
      atleta.`telefone` AS atleta_telefone,
-     atleta.`celular` AS atleta_celular,
-     atleta.`pace` AS atleta_pace
+     atleta.`celular` AS atleta_celular
 FROM
      `atleta` atleta]]>
 	</queryString>
