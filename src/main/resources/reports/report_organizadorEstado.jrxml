@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_organizadorEstado" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="42624963-d21a-4614-8686-cbad356c9dc8">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<parameter name="P_Estado" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.organizador.nome,
-	sgcr.organizador.cpf,
-	sgcr.organizador.sexo,
-	sgcr.organizador.estado,
-	sgcr.organizador.cidade
-FROM sgcr.organizador
-WHERE	sgcr.organizador.estado =  $P{P_Estado} ]]>
+		<![CDATA[SELECT sgcr2.organizador.nome,
+	sgcr2.organizador.cpf,
+	sgcr2.organizador.sexo,
+	sgcr2.organizador.estado,
+	sgcr2.organizador.cidade
+FROM sgcr2.organizador
+WHERE	sgcr2.organizador.estado =  $P{P_Estado}]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>

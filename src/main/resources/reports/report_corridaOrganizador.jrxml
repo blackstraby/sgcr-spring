@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_corridaOrganizador" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ffaa8a09-2b92-4622-bc02-b613ac83289f">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR maria"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<parameter name="P_organizador" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.corrida.nome,
-	sgcr.corrida.estado,
-	sgcr.organizador.nome,
-	sgcr.corrida.cidade
-FROM sgcr.corrida
-	INNER JOIN sgcr.organizador ON 
-	 sgcr.corrida.organizador_id = sgcr.organizador.id 
-Where sgcr.organizador.nome LIKE '%$P!{P_organizador}%']]>
+		<![CDATA[SELECT sgcr2.corrida.nome,
+	sgcr2.corrida.estado,
+	sgcr2.organizador.nome,
+	sgcr2.corrida.cidade
+FROM sgcr2.corrida
+	INNER JOIN sgcr2.organizador ON 
+	 sgcr2.corrida.organizador_id = sgcr2.organizador.id 
+Where sgcr2.organizador.nome LIKE '%$P!{P_organizador}%']]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>

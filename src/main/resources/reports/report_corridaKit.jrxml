@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_corridaKit" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8bd95b60-1e74-4ac6-ae5a-626a5c42feef">
 	<property name="com.jaspersoft.studio.data.sql.tables">
 		<![CDATA[c2djci5raXRfY29ycmlkYSBBUyAsMjEwLDM1LGJkZGQwN2YyLWJiMmUtNDgzNS04NmU0LTgzMDUw
 OTRkYWE1NDtzZ2NyLmtpdCBBUyAsNTAsNSxmZDZhMmNlMi1mNTY1LTRiOTQtYjA3Ni1jZmQ1MTA4
 MDk1NjA7c2djci5jb3JyaWRhIEFTICwyMTEsMTc0LDhjMDAxMGQ4LTcyNjctNDg5MS1iMjUzLTA2
-NGZiN2E1YmZlNTs=
-]]>
+NGZiN2E1YmZlNTs=]]>
 	</property>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR maria"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT sgcr.corrida.id,
-	sgcr.corrida.nome,
-	sgcr.kit.nome,
-	sgcr.kit.tipo_chip
-FROM sgcr.kit_corrida
-	INNER JOIN sgcr.kit ON 
-	 sgcr.kit_corrida.kit_id = sgcr.kit.id 
-	INNER JOIN sgcr.corrida ON 
-	 sgcr.kit_corrida.corrida_id = sgcr.corrida.id]]>
+		<![CDATA[SELECT sgcr2.corrida.id,
+	sgcr2.corrida.nome,
+	sgcr2.kit.nome,
+	sgcr2.kit.tipo_chip
+FROM sgcr2.kit_corrida
+	INNER JOIN sgcr2.kit ON 
+	 sgcr2.kit_corrida.kit_id = sgcr2.kit.id 
+	INNER JOIN sgcr2.corrida ON 
+	 sgcr2.kit_corrida.corrida_id = sgcr2.corrida.id]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>

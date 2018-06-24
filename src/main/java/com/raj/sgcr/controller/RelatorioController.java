@@ -3,6 +3,7 @@ package com.raj.sgcr.controller;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.util.JRSaver;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class RelatorioController {
     public Connection abrirConexao() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            return  DriverManager.getConnection("jdbc:mysql://localhost/SGCR2", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://localhost/SGCR2", "root", "");
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -49,9 +50,38 @@ public class RelatorioController {
         return JasperFillManager.fillReport(relatorio, parametros, conexao);
     }
 
+    @GetMapping(value = "")
+    public String percursos(Model model){
+
+        return "relatorio/pesquisar";
+    }
 
 
-    @GetMapping(value = "{report}")// site.com/administrador/edit/1/
+    @GetMapping(value = "corrida/{report}/{parametro}")// site.com/administrador/edit/1/
+    public void gerarRelatorioCorridaEstado(HttpServletRequest request, HttpServletResponse response,
+                                            @PathVariable String report, @PathVariable String parametro)
+            throws JRException, IOException, SQLException {
+        String nomeRelatorio = report;
+        Connection conexao = this.abrirConexao();
+
+
+        JasperReport relatorio = this.gerarJasper("/reports/" + nomeRelatorio + ".jrxml", nomeRelatorio);
+        if (relatorio != null) {
+            HashMap parametros = new HashMap();
+
+            parametros.put("P_estado", parametro);
+
+            JasperPrint JP = JasperFillManager.fillReport(relatorio, parametros, conexao);
+            byte[] relat = JasperExportManager.exportReportToPdf(this.exibirRelatorio(relatorio, parametros, conexao));
+            response.setHeader("Content-Disposition", "attachment;filename=" + nomeRelatorio + ".pdf");
+            response.setContentType("application/pdf");
+            response.getOutputStream().write(relat);
+        }
+        conexao.close();
+
+    }
+
+    @GetMapping(value = "{report}")
     public void gerarRelatorio(HttpServletRequest request, HttpServletResponse response, @PathVariable String report) throws JRException, IOException, SQLException {
         String nomeRelatorio = report;
         Connection conexao = this.abrirConexao();
