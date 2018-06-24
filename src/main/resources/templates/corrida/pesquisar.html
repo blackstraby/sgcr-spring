@@ -4,42 +4,50 @@
     <meta charset="UTF-8"/>
     <title th:text="${title}"> Corrida </title>
 </head>
-<body>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
 
-<div class="container corpo">
-    <div class="row">
-        <h1 th:text="${title}">Corrida</h1>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="${title}"></span></li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-responsive" th:if="${!corridas.isEmpty()}">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Máx Pessoas</th>
+                                <th colspan="2">Acão</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="corrida : ${corridas}">
+                                <td th:text="${corrida.id}">Codigo</td>
+                                <td th:text="${corrida.nome}">Nome</td>
+                                <td th:text="${corrida.maxPessoa}">Máx Pessoa</td>
+                                <td><a th:href="@{'/corrida/edit/' + ${corrida.id}}">Editar</a></td>
+                                <td><a th:href="@{'/corrida/delete/' + ${corrida.id}}">Excluir</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h2 th:unless="${!corridas.isEmpty()}">Sem Corridas</h2>
 
-        <div class="col-md-12">
-            <div class="panel panel-primary">
-                <table class="table table-hover table-responsive" th:if="${!corridas.isEmpty()}">
-                    <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Nome</th>
-                        <th>Máx Pessoas</th>
-                        <th colspan="2">Acão</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="corrida : ${corridas}">
-                        <td th:text="${corrida.id}">Codigo</td>
-                        <td th:text="${corrida.nome}">Nome</td>
-                        <td th:text="${corrida.maxPessoa}">Máx Pessoa</td>
-                        <td><a th:href="@{'/corrida/edit/' + ${corrida.id}}">Editar</a></td>
-                        <td><a th:href="@{'/corrida/delete/' + ${corrida.id}}">Excluir</a></td>
-                    </tr>
-                </table>
-                <h2 th:unless="${!corridas.isEmpty()}">Sem Corridas</h2>
-
-                <a  class="btn btn-primary" th:href="@{'~/corrida/add/'}">Adicionar</a>
-                <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
-                <a class="btn btn-danger" th:href="@{'~/relatorio/report_corrida'}">Gerar Corrida </a>
-
-
+                    <a  class="btn btn-primary" th:href="@{'~/corrida/add/'}">Adicionar</a>
+                    <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
+                    <a class="btn btn-danger" th:href="@{'~/relatorio/report_corrida'}">Gerar Corrida </a>
+                </div>
             </div>
         </div>
     </div>
+    <div th:replace="fragments :: div"></div>
 </div>
 </body>
 </html>
