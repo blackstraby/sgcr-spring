@@ -4,45 +4,59 @@
     <meta charset="UTF-8"/>
     <title th:text="${title}"> Administrador </title>
 </head>
-<body>
 
-<div class="container corpo">
-    <div class="row">
-        <h1 th:text="${title}">Administrador</h1>
-        <div class="col-md-12">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
-                           th:if="${!administradores.isEmpty()}">
-                        <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th class="text-center" colspan="2">Acão</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="administrador : ${administradores}">
-                            <td th:text="${administrador.id}">Codigo</td>
-                            <td th:text="${administrador.nome}">Nome</td>
-                            <td th:text="${administrador.email}">Email</td>
-                            <td><a th:href="@{'/administrador/edit/' + ${administrador.id}}">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a></td>
-                            <td><a th:href="@{'/administrador/delete/' + ${administrador.id}}">
-                                <i class="fa fa-trash" aria-hidden="true"></i> Excluir</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="${title}"></span></li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                               th:if="${!administradores.isEmpty()}">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th class="text-center" colspan="2">Acão</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="administrador : ${administradores}">
+                                <td th:text="${administrador.id}">Codigo</td>
+                                <td th:text="${administrador.nome}">Nome</td>
+                                <td th:text="${administrador.email}">Email</td>
+                                <td><a th:href="@{'/administrador/edit/' + ${administrador.id}}">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a></td>
+                                <td><a th:href="@{'/administrador/delete/' + ${administrador.id}}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Excluir</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2 th:unless="${!administradores.isEmpty()}">Sem Administradores</h2>
+
+                    <a class="btn btn-primary" th:href="@{'~/administrador/add/'}">Adicionar</a>
+                    <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
+                    <a class="btn btn-danger" th:href="@{'~/relatorio/report_administrador'}">Gerar Relatorio</a>
+
                 </div>
-
-                <h2 th:unless="${!administradores.isEmpty()}">Sem Administradores</h2>
-
-                <a class="btn btn-primary" th:href="@{'~/administrador/add/'}">Adicionar</a>
-                <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
             </div>
         </div>
     </div>
 </div>
+<div th:replace="fragments :: div"></div>
+
+</div>
 </body>
+
 </html>

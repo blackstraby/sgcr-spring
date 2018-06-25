@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bad6aae0-23a9-4a53-870e-b8fd2e3a9334">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     corrida.`id` AS corrida_id,
+     corrida.`nome` AS corrida_nome,
+     corrida.`horario` AS corrida_horario,
+     corrida.`data` AS corrida_data,
+     corrida.`max_pessoa` AS corrida_max_pessoa,
+     corrida.`banner` AS corrida_banner,
+     corrida.`descricao` AS corrida_descricao,
+     corrida.`cep` AS corrida_cep,
+     corrida.`estado` AS corrida_estado,
+     corrida.`cidade` AS corrida_cidade,
+     corrida.`bairro` AS corrida_bairro,
+     corrida.`logradouro` AS corrida_logradouro,
+     corrida.`numero` AS corrida_numero,
+     corrida.`ativo` AS corrida_ativo,
+     corrida.`data_inicio_retirada_kit` AS corrida_data_inicio_retirada_kit,
+     corrida.`data_final_retirada_kit` AS corrida_data_final_retirada_kit,
+     corrida.`organizador_id` AS corrida_organizador_id
+FROM
+     `corrida` corrida]]>
+	</queryString>
+	<field name="corrida_nome" class="java.lang.String"/>
+	<field name="corrida_horario" class="java.lang.String"/>
+	<field name="corrida_data" class="java.lang.String"/>
+	<field name="corrida_max_pessoa" class="java.lang.Integer"/>
+	<field name="corrida_estado" class="java.lang.String"/>
+	<field name="corrida_cidade" class="java.lang.String"/>
+	<field name="corrida_bairro" class="java.lang.String"/>
+	<field name="corrida_logradouro" class="java.lang.String"/>
+	<field name="corrida_numero" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="5fe79fe5-9635-488b-bdd3-6dc27055b969"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="a482789a-1b8c-4f67-8149-10e8f92208b0"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Corridas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="a24bb7b9-2497-462d-9806-eea353b893ff"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-30" y="20" width="595" height="1" forecolor="#666666" uuid="33aca8ff-2cba-4d8e-81c0-cbc482ce3983"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7cd12be2-4f64-4e13-b8e7-f0177f7ea69d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="61" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d3100b65-f18f-41c5-be45-687cfd265bf3"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="122" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e446e1bc-a9df-433f-b7c4-2a44d8a8a08b"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="183" y="0" width="51" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4267beb5-caa0-47b0-96b2-1303aa70e54a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Max]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="234" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5e66dc77-26cd-4fbb-8c5a-041df42586f9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="295" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b2a9f5e8-c084-4110-a174-166a9b61a72c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="356" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="cb97d26b-d039-4efb-801e-2fd0d1546fcd"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="417" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="327f0102-213e-410a-bbba-e3cc8323721e"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Logradouro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="478" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e192f997-5460-4d53-9ca9-fa436f25ab9c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="f6de6653-6bc6-4995-9b15-2191db35277f"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="61" height="20" uuid="efd4de41-c399-475e-b920-9395c5f457df"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="61" y="0" width="61" height="20" uuid="78f40f7e-d28a-409e-b222-57ba90b3ec12"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_horario}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="122" y="0" width="61" height="20" uuid="891cc4fd-a39c-41b4-8204-f1978729c4b9"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_data}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="183" y="0" width="51" height="20" uuid="95f2f1b6-0bab-4857-b760-a0e79ac5d791"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_max_pessoa}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="234" y="0" width="61" height="20" uuid="eeb82501-17cc-42f3-b2de-a0422a29ac70"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_estado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="295" y="0" width="61" height="20" uuid="c57d00cb-4876-43ec-83f1-34360d728ae3"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_cidade}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="356" y="0" width="61" height="20" uuid="80b0c169-6ce4-43d5-9538-fcebf4944697"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_bairro}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="417" y="0" width="61" height="20" uuid="2671e285-f557-4242-a784-639dd7ea5362"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_logradouro}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="478" y="0" width="61" height="20" uuid="96203b1e-bb9f-4b2d-8940-6322ca6008e5"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_numero}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="f800aaea-4cf5-43d8-a017-ab90a8fe0e69"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="acdd783e-a801-4d0a-b0f7-0b8159fc9c4a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="41aba69e-486c-4d81-82d5-dfccd38d79a4"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

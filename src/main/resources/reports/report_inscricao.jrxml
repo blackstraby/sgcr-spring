@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_inscricao" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4028d1f6-3bd2-4317-bdc6-dd7b5ecfc13e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     corrida.`id` AS corrida_id,
+     corrida.`nome` AS corrida_nome,
+     corrida.`horario` AS corrida_horario,
+     corrida.`data` AS corrida_data,
+     corrida.`max_pessoa` AS corrida_max_pessoa,
+     corrida.`banner` AS corrida_banner,
+     corrida.`descricao` AS corrida_descricao,
+     corrida.`cep` AS corrida_cep,
+     corrida.`estado` AS corrida_estado,
+     corrida.`cidade` AS corrida_cidade,
+     corrida.`bairro` AS corrida_bairro,
+     corrida.`logradouro` AS corrida_logradouro,
+     corrida.`numero` AS corrida_numero,
+     corrida.`ativo` AS corrida_ativo,
+     corrida.`data_inicio_retirada_kit` AS corrida_data_inicio_retirada_kit,
+     corrida.`data_final_retirada_kit` AS corrida_data_final_retirada_kit,
+     corrida.`organizador_id` AS corrida_organizador_id,
+     inscricao.`id` AS inscricao_id,
+     inscricao.`corrida_id` AS inscricao_corrida_id,
+     inscricao.`data_compra` AS inscricao_data_compra,
+     inscricao.`numero_peito` AS inscricao_numero_peito,
+     inscricao.`pago` AS inscricao_pago,
+     inscricao.`kit_retirado` AS inscricao_kit_retirado,
+     inscricao.`tempo_largada` AS inscricao_tempo_largada,
+     inscricao.`tempo_chegada` AS inscricao_tempo_chegada,
+     inscricao.`atleta_id` AS inscricao_atleta_id,
+     inscricao.`percurso_id` AS inscricao_percurso_id,
+     inscricao.`lote_id` AS inscricao_lote_id,
+     inscricao.`kit_id` AS inscricao_kit_id,
+     atleta.`id` AS atleta_id,
+     atleta.`nome` AS atleta_nome,
+     atleta.`apelido` AS atleta_apelido,
+     atleta.`email` AS atleta_email,
+     atleta.`senha` AS atleta_senha,
+     atleta.`sexo` AS atleta_sexo,
+     atleta.`tam_camisa` AS atleta_tamanho_camisa,
+     atleta.`data_nascimento` AS atleta_data_nascimento,
+     atleta.`cpf` AS atleta_cpf,
+     atleta.`cep` AS atleta_cep,
+     atleta.`estado` AS atleta_estado,
+     atleta.`cidade` AS atleta_cidade,
+     atleta.`bairro` AS atleta_bairro,
+     atleta.`logradouro` AS atleta_logradouro,
+     atleta.`numero` AS atleta_numero,
+     atleta.`complemento` AS atleta_complemento,
+     atleta.`telefone` AS atleta_telefone,
+     atleta.`celular` AS atleta_celular
+FROM
+     `corrida` corrida INNER JOIN `inscricao` inscricao ON corrida.`id` = inscricao.`corrida_id`
+     INNER JOIN `atleta` atleta ON inscricao.`atleta_id` = atleta.`id`]]>
+	</queryString>
+	<field name="atleta_nome" class="java.lang.String"/>
+	<field name="inscricao_numero_peito" class="java.lang.Integer"/>
+	<field name="inscricao_data_compra" class="java.lang.String"/>
+	<field name="inscricao_pago" class="java.lang.Boolean"/>
+	<field name="inscricao_kit_retirado" class="java.lang.Boolean"/>
+	<field name="inscricao_tempo_chegada" class="java.lang.String"/>
+	<field name="inscricao_tempo_largada" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="bd825543-2c66-4266-bfd1-7b0b261f523c"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="40745814-2f90-4a25-8195-be3be6ffc5e3"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Inscrição]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="2116fff4-ceea-4948-9ab3-ff024d952cb1"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Lista de inscrição]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="17fd9aa1-fbfc-4a72-93ea-c5e5c25d632f"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="123" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="60deca39-e307-464b-86e5-d5debdf42658"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="113" y="0" width="58" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0aa96ce7-500b-4981-8f81-0a28c1cfd2cd"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Peito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="171" y="0" width="89" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="83fd1f01-549b-432a-9297-dd1231825868"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Compra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="260" y="0" width="56" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="34b12f70-bc9f-4a09-936c-2562a99de845"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="316" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9195d392-8c7f-4634-ae3d-f3bf385ba677"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kit Retirado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="395" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ca5bbd41-04d5-425c-92d0-8d61b8eece2f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Chegada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="474" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="13820b90-9409-42c9-a54f-3f79cc80f3be"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Largada]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="4a2bcf27-1815-4389-9e11-7ea0353f19a5"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="123" height="20" uuid="eb824405-5867-4c7f-889d-eb3bc28b38b3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atleta_nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="123" y="0" width="48" height="20" uuid="2db0f590-3a8b-42e8-86a4-c1fbb177dc4e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inscricao_numero_peito}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="181" y="0" width="78" height="20" uuid="d3442dfa-0e83-415c-aba6-3c99347229d0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inscricao_data_compra}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="270" y="0" width="46" height="20" uuid="4ddea5d2-befc-4d7e-b684-dccf7c4e4f8e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inscricao_pago}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="320" y="0" width="75" height="20" uuid="9b97787e-0a3a-4972-9f6d-63d6ff25ff2c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inscricao_kit_retirado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="410" y="0" width="69" height="20" uuid="9acebbb1-3b3d-4be8-a5fa-8b6cce6ba41d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inscricao_tempo_chegada}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="490" y="0" width="63" height="20" uuid="72857d2b-0464-4a4f-ada2-5c9000b6d8dd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inscricao_tempo_largada}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="23f8de83-5aa9-42fc-8da8-380785027857"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="f394b0d1-a22c-4f95-afb7-eba508b9835e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="45fba61c-3738-4c3c-b93f-8b441e690b28"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

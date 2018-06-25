@@ -18,6 +18,30 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card-body">
+                    <form  action="/organizador/buscarCorrida"  method="get">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="form-group input-group">
+                                        <select required class="form-control custom-select" name="organizador" id="organizador">
+                                            <option value="" class="d-none">Selecione um Organizador...</option>
+                                            <option th:if="${operacao} == busca" th:each="organizador : ${organizadores}"
+                                                    th:value="${organizador.id}" th:text="${organizador.nome}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-dark" th:href="@{'~/organizador/busca'}">Buscar Todas</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
                     <div class="table-responsive">
                         <table class="table table-hover table-responsive" th:if="${!corridas.isEmpty()}">
                             <thead>
@@ -39,15 +63,15 @@
                         </table>
                     </div>
                     <h2 th:unless="${!corridas.isEmpty()}">Sem Corridas</h2>
-
                     <a  class="btn btn-primary" th:href="@{'~/corrida/add/'}">Adicionar</a>
                     <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
-                    <a class="btn btn-danger" th:href="@{'~/relatorio/report_corrida'}">Gerar Corrida </a>
                 </div>
             </div>
         </div>
     </div>
     <div th:replace="fragments :: div"></div>
 </div>
+
+
 </body>
 </html>

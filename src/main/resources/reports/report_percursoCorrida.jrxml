@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="91fbf120-518b-4e4e-a380-bbf2e754f0d6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCR2"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     percurso.`id` AS percurso_id,
+     percurso.`quilometragem` AS percurso_quilometragem,
+     percurso.`descricao` AS percurso_descricao,
+     percurso.`organizador_id` AS percurso_organizador_id,
+     percurso_corrida.`corrida_id` AS percurso_corrida_corrida_id,
+     percurso_corrida.`percurso_id` AS percurso_corrida_percurso_id,
+     corrida.`id` AS corrida_id,
+     corrida.`nome` AS corrida_nome,
+     corrida.`horario` AS corrida_horario,
+     corrida.`data` AS corrida_data,
+     corrida.`max_pessoa` AS corrida_max_pessoa,
+     corrida.`banner` AS corrida_banner,
+     corrida.`descricao` AS corrida_descricao,
+     corrida.`cep` AS corrida_cep,
+     corrida.`estado` AS corrida_estado,
+     corrida.`cidade` AS corrida_cidade,
+     corrida.`bairro` AS corrida_bairro,
+     corrida.`logradouro` AS corrida_logradouro,
+     corrida.`numero` AS corrida_numero,
+     corrida.`ativo` AS corrida_ativo,
+     corrida.`data_inicio_retirada_kit` AS corrida_data_inicio_retirada_kit,
+     corrida.`data_final_retirada_kit` AS corrida_data_final_retirada_kit,
+     corrida.`organizador_id` AS corrida_organizador_id
+FROM
+     `percurso` percurso INNER JOIN `percurso_corrida` percurso_corrida ON percurso.`id` = percurso_corrida.`percurso_id`
+     INNER JOIN `corrida` corrida ON percurso_corrida.`corrida_id` = corrida.`id`]]>
+	</queryString>
+	<field name="percurso_quilometragem" class="java.lang.Double"/>
+	<field name="percurso_descricao" class="java.lang.String"/>
+	<field name="corrida_nome" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="08a8c365-552d-4ca7-82ff-0eaa4ea95670"/>
+				<staticText>
+					<reportElement x="20" y="20" width="335" height="43" forecolor="#FFFFFF" uuid="0bb9b57a-0cdc-41df-af22-6b4e5b16be97"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Percursos - Corrida]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="80116694-048f-44d7-bd87-b3be632074b9"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Lista Corrida Percursos]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="c85834a1-c93f-48be-a0af-64d88600c2f6"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="68" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f9c83f2c-8f6e-48f0-a126-8c91fe4598e5"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Corrida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="68" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="27bef911-e330-45a1-b73a-f62c945869f1"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Km]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="253" y="0" width="302" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e67fbd21-9982-4f09-8874-9285a2f405cf"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="c0e3efe5-ad9d-46df-89f1-1f7cd9a80fc0"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="68" height="20" uuid="360f5e08-7124-4d57-90b5-72d0153c5fc3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{percurso_quilometragem}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="68" y="0" width="185" height="20" uuid="292c03e3-790b-46ec-a5a9-7caf8abe3da9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{corrida_nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="253" y="0" width="302" height="20" uuid="f93e9ba9-52b4-4aa3-baf9-2ec17a216534"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{percurso_descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="89a8a2a5-b527-4c3f-b6ea-5cbb52b1739d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="c1edb062-d31b-4e00-9800-881c0085cd3c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="54e3a440-82c3-40fe-86fc-455b34689fe7"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

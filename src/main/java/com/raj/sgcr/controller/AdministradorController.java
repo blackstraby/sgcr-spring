@@ -2,11 +2,22 @@ package com.raj.sgcr.controller;
 
 import com.raj.sgcr.domain.model.Administrador;
 import com.raj.sgcr.domain.repository.AdministradorRepository;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -15,6 +26,8 @@ public class AdministradorController {
 
     @Autowired
     private AdministradorRepository adminRepository;
+
+    private RelatorioController relatorioAdministrador;
 
     @GetMapping(value = "")
     public String administradores(Model model) {
@@ -79,4 +92,5 @@ public class AdministradorController {
         adminRepository.delete(admin);
         return "redirect:/administrador";
     }
+
 }
