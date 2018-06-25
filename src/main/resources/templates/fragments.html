@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,12 +62,35 @@
                     <span class="nav-link-text">Relatorios</span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a class="nav-link" th:href="@{'~/administrador'}">
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponentsAdm"
+                   data-parent="#exampleAccordion">
                     <i class="fa fa-lock fa-lg"></i>
                     <span class="nav-link-text">Administrador</span>
                 </a>
+                <ul class="sidenav-second-level collapse" id="collapseComponentsAdm">
+                    <li>
+                        <a class="nav-link" th:href="@{'~/administrador'}">
+                            <i class="fa fa-flag-checkered fa-lg"></i>
+                            <span class="nav-link-text">Administrador</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" th:href="@{'~/organizador'}">
+                            <i class="fa fa-flag-checkered fa-lg"></i>
+                            <span class="nav-link-text">Buscar Organizador</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" th:href="@{'~/organizador/busca'}">
+                            <i class="fa fa-flag-checkered fa-lg"></i>
+                            <span class="nav-link-text">Buscar Corrida</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                 <a class="nav-link" th:href="@{'~/atleta'}">
                     <i class="fa fa-male fa-lg"></i>
@@ -129,6 +152,28 @@
                 </ul>
             </li>
 
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponentsPag"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-flag-checkered fa-lg"></i>
+                    <span class="nav-link-text">Pagamento</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseComponentsPag">
+                    <li>
+                        <a class="nav-link" th:href="@{'~/boleto'}">
+                            <i class="fa fa-credit-card fa-lg"></i>
+                            <span class="nav-link-text">Boleto</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" th:href="@{'~/cartaoCredito'}">
+                            <i class="fa fa-credit-card fa-lg"></i>
+                            <span class="nav-link-text">Cartão de Crédito</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <!--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">-->
             <!--<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages"-->
             <!--data-parent="#exampleAccordion">-->
@@ -184,19 +229,6 @@
             <!--</ul>-->
             <!--</li>-->
             <!---->
-
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                <a class="nav-link" th:href="@{'~/boleto'}">
-                    <i class="fa fa-credit-card fa-lg"></i>
-                    <span class="nav-link-text">Boleto</span>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                <a class="nav-link" th:href="@{'~/cartaoCredito'}">
-                    <i class="fa fa-credit-card fa-lg"></i>
-                    <span class="nav-link-text">Cartão de Crédito</span>
-                </a>
-            </li>
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
@@ -309,6 +341,11 @@
               </span>
                     </div>
                 </form>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
