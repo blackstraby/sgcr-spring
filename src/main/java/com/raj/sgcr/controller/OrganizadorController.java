@@ -31,8 +31,8 @@ public class OrganizadorController {
     @GetMapping(value = "add")
     public String displayOrganizadorForm(Model model) {
         model.addAttribute("operacao", "adicionar");
-        model.addAttribute("title", "Adicionar organizador");
-        model.addAttribute("botaoOperacao", "Adicionar Organizador");
+        model.addAttribute("title", "Cadastro organizador");
+        model.addAttribute("botaoOperacao", "Cadastrar");
 
         return "organizador/manter";
     }
