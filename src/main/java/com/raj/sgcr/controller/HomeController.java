@@ -1,7 +1,11 @@
 package com.raj.sgcr.controller;
 
+import com.raj.sgcr.domain.model.Usuario;
 import com.raj.sgcr.domain.repository.*;
+import com.raj.sgcr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +24,13 @@ public class HomeController {
     private PercursoRepository percursoRepository;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     public HomeController(CorridaRepository corridaRepository,
                           KitRepository kitRepository,
                           LoteRepository loteRepository,
-                          PercursoRepository percursoRepository    ) {
+                          PercursoRepository percursoRepository) {
         this.corridaRepository = corridaRepository;
         this.kitRepository = kitRepository;
         this.loteRepository = loteRepository;
@@ -32,6 +39,11 @@ public class HomeController {
 
     @GetMapping(value = "")
     public String corridas(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Usuario user = userService.findUsuarioByEmail(auth.getName());
+
+        if (user != null) model.addAttribute("nome", user.getNome());
+
         model.addAttribute("dataAtual", new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
         model.addAttribute("title", "Dashboard");
 
