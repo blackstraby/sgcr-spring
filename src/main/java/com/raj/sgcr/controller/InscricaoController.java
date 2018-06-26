@@ -1,18 +1,15 @@
 package com.raj.sgcr.controller;
 
+import com.raj.sgcr.domain.model.Corrida;
 import com.raj.sgcr.domain.model.Inscricao;
-import com.raj.sgcr.domain.repository.InscricaoRepository;
-import com.raj.sgcr.domain.repository.CorridaRepository;
-import com.raj.sgcr.domain.repository.AtletaRepository;
-import com.raj.sgcr.domain.repository.PercursoRepository;
-import com.raj.sgcr.domain.repository.KitRepository;
-import com.raj.sgcr.domain.repository.LoteRepository;
+import com.raj.sgcr.domain.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.Random;
 
 @Controller
 @RequestMapping(value = "/inscricao")
@@ -64,6 +61,10 @@ public class InscricaoController {
     @PostMapping(value = "add")
     public String postInscricoesAdd(Model model, @ModelAttribute Inscricao inscricao){
         model.addAttribute("title", "Adicionar inscrição");
+        Random gerador = new Random();
+        inscricao.setDataCompra("27/06/2018");
+        int n = 1 + gerador.nextInt(1000);
+        inscricao.setNumeroPeito(String.valueOf(n));
         inscricaoRepository.save(inscricao);
         return "redirect:/inscricao";
     }
@@ -118,6 +119,24 @@ public class InscricaoController {
     public String postInscricaoDelete(@PathVariable Long id, @ModelAttribute Inscricao inscricao) {
         inscricaoRepository.delete(inscricao);
         return "redirect:/inscricao";
+    }
+
+    @GetMapping(value = "corrida/{id}")
+    public String getCorridaInscricao(Model model, @PathVariable Long id) {
+        Optional<Corrida> corrida = corridaRepository.findById(id);
+        if (corrida.isPresent()){
+            model.addAttribute("corrida", corrida.get());
+            model.addAttribute("atletas", atletaRepository.findAll());
+            model.addAttribute("percursos", percursoRepository.findAllByOrganizador(corrida.get().getOrganizador()));
+            model.addAttribute("kits", kitRepository.findAllByOrganizador(corrida.get().getOrganizador()));
+            model.addAttribute("lotes", loteRepository.findAllByCorrida(corrida.get()));
+            model.addAttribute("operacao", "adicionar");
+            model.addAttribute("botaoOperacao", "Finalizar Inscrição");
+            model.addAttribute("title", "Inscrição na corrida " + corrida.get().getNome());
+        } else {
+            model.addAttribute("erro", "Ops... Corrida não encontrada!");
+        }
+        return "inscricao/inscricao";
     }
 
 }

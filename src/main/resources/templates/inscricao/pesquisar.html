@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
-    <meta charset="UTF-8"/>
-    <title th:text="${title}"> Inscrição </title>
-</head>
-<body>
+<head>
+    <head th:replace="fragments :: head">
+        <meta charset="UTF-8"/>
+        <title th:text="${title}"> Inscrição </title>
+    </head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
 
-<div class="container corpo">
-    <div class="row">
-        <h1 th:text="${title}">Inscrição</h1>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="${title}"></span></li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" th:if="${!inscricoes.isEmpty()}">
+                            <thead>
+                            <tr>
+                                <th>Nome Atleta</th>
+                                <th>Data Compra</th>
+                                <th>Nº Peito</th>
+                                <th colspan="2">Acão</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="inscricao : ${inscricoes}">
+                                <td th:text="${inscricao.atleta?.getNome()}">Nome</td>
+                                <td th:text="${inscricao.dataCompra}">Data Compra</td>
+                                <td th:text="${inscricao.numeroPeito}">Máx Pessoa</td>
+                                <td><a th:href="@{'/inscricao/edit/' + ${inscricao.id}}">Editar</a></td>
+                                <td><a th:href="@{'/inscricao/delete/' + ${inscricao.id}}">Excluir</a></td>
+                            </tr>
+                        </table>
+                        <h2 th:unless="${!inscricoes.isEmpty()}">Sem Inscrições</h2>
 
-        <div class="col-md-12">
-            <div class="panel panel-primary">
-                <table class="table table-hover table-responsive" th:if="${!inscricoes.isEmpty()}">
-                    <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Data Compra</th>
-                        <th>Nº Peito</th>
-                        <th colspan="2">Acão</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="inscricao : ${inscricoes}">
-                        <td th:text="${inscricao.id}">Codigo</td>
-                        <td th:text="${inscricao.dataCompra}">Data Compra</td>
-                        <td th:text="${inscricao.numeroPeito}">Máx Pessoa</td>
-                        <td><a th:href="@{'/inscricao/edit/' + ${inscricao.id}}">Editar</a></td>
-                        <td><a th:href="@{'/inscricao/delete/' + ${inscricao.id}}">Excluir</a></td>
-                    </tr>
-                </table>
-                <h2 th:unless="${!inscricoes.isEmpty()}">Sem Inscrições</h2>
-
-                <a  class="btn btn-primary" th:href="@{'~/inscricao/add/'}">Adicionar</a>
-
+                        <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
+                    </div>
+                </div>
             </div>
         </div>
+        <div th:replace="fragments :: div"></div>
     </div>
-</div>
 </body>
 </html>

@@ -2,126 +2,128 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head">
     <meta charset="UTF-8"/>
-    <title th:text="${title}">Corrida</title>
+    <title th:text="${title}"> Corrida </title>
 </head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
 
-<body>
-<div class="container corpo">
-    <br><br>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <h5 class="card-header" th:text="${title}">Corrida</h5>
-                <div class="card-body">
-                    <form th:object="${corrida}" method="post">
-                        <div class="form-group">
-                            <label for="nome">Nome:</label>
-                            <input type="text" required class="form-control" id="nome" name="nome"
-                                   th:value="${corrida?.nome}" th:disabled="${operacao} == deletar"/>
-                        </div>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="${title}"></span></li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h5 class="card-header" th:text="${title}">Corrida</h5>
+                    <div class="card-body">
+                        <form th:object="${corrida}" method="post">
+                            <div class="form-group">
+                                <label for="nome">Nome:</label>
+                                <input type="text" required class="form-control" id="nome" name="nome"
+                                       th:value="${corrida?.nome}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="horario">Horário:</label>
-                            <input type="datetime-local" class="form-control" id="horario" name="horario" required
-                                   th:value="${corrida?.horario}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="horario">Horário:</label>
+                                <input type="text" class="form-control" id="horario" name="horario" required
+                                       th:value="${corrida?.horario}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="data">Data:</label>
-                            <input type="date" class="form-control" id="data" name="data" required
-                                   th:value="${corrida?.data}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="data">Data:</label>
+                                <input type="date" class="form-control" id="data" name="data" required
+                                       th:value="${corrida?.data}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="maxPessoa">Máx Pessoas:</label>
-                            <input type="number" class="form-control" id="maxPessoa" name="maxPessoa" required
-                                   th:value="${corrida?.maxPessoa}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="maxPessoa">Máx Pessoas:</label>
+                                <input type="number" class="form-control" id="maxPessoa" name="maxPessoa" required
+                                       th:value="${corrida?.maxPessoa}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="descricao">Descrição:</label>
-                            <input type="text" class="form-control" id="descricao" name="descricao"
-                                      th:value="${corrida?.descricao}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="descricao">Descrição:</label>
+                                <input type="text" class="form-control" id="descricao" name="descricao"
+                                       th:value="${corrida?.descricao}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="cep">CEP</label>
-                            <input type="text" class="form-control" id="cep" name="cep" required
-                                   th:value="${corrida?.cep}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="cep">CEP</label>
+                                <input type="text" class="form-control" id="cep" name="cep" required
+                                       th:value="${corrida?.cep}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="estado">Estado:</label>
-                            <input type="text" class="form-control" id="estado" name="estado" required
-                                   th:value="${corrida?.estado}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="estado">Estado:</label>
+                                <input type="text" class="form-control" id="estado" name="estado" required
+                                       th:value="${corrida?.estado}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="estado">Cidade:</label>
-                            <input type="text" class="form-control" id="cidade" name="cidade" required
-                                   th:value="${corrida?.cidade}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="estado">Cidade:</label>
+                                <input type="text" class="form-control" id="cidade" name="cidade" required
+                                       th:value="${corrida?.cidade}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="bairro">Bairro:</label>
-                            <input type="text" class="form-control" id="bairro" name="bairro" required
-                                   th:value="${corrida?.bairro}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="bairro">Bairro:</label>
+                                <input type="text" class="form-control" id="bairro" name="bairro" required
+                                       th:value="${corrida?.bairro}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="logradouro">Logradouro:</label>
-                            <input type="text" class="form-control" id="logradouro" name="logradouro" required
-                                   th:value="${corrida?.logradouro}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="logradouro">Logradouro:</label>
+                                <input type="text" class="form-control" id="logradouro" name="logradouro" required
+                                       th:value="${corrida?.logradouro}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="numero">Número:</label>
-                            <input type="text" class="form-control" id="numero" name="numero" required
-                                   th:value="${corrida?.numero}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="numero">Número:</label>
+                                <input type="text" class="form-control" id="numero" name="numero" required
+                                       th:value="${corrida?.numero}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="estado">Estado:</label>
-                            <input type="text" class="form-control" id="estado" name="estado" required
-                                   th:value="${corrida?.estado}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="dataInicioRetiradaKit">Início Retirada Kit:</label>
+                                <input type="date" class="form-control" id="dataInicioRetiradaKit" name="dataInicioRetiradaKit" required
+                                       th:value="${corrida?.dataInicioRetiradaKit}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="dataInicioRetiradaKit">Início Retirada Kit:</label>
-                            <input type="date" class="form-control" id="dataInicioRetiradaKit" name="dataInicioRetiradaKit" required
-                                   th:value="${corrida?.dataInicioRetiradaKit}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="dataFinalRetiradaKit">Final Retirada Kit:</label>
+                                <input type="date" class="form-control" id="dataFinalRetiradaKit" name="dataFinalRetiradaKit" required
+                                       th:value="${corrida?.dataInicioRetiradaKit}" th:disabled="${operacao} == deletar"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="dataFinalRetiradaKit">Final Retirada Kit:</label>
-                            <input type="date" class="form-control" id="dataFinalRetiradaKit" name="dataFinalRetiradaKit" required
-                                   th:value="${corrida?.dataInicioRetiradaKit}" th:disabled="${operacao} == deletar"/>
-                        </div>
+                            <div class="form-group input-group">
+                                <select class="form-control custom-select" name="organizador" id="organizador" th:disabled="${operacao} == deletar">
+                                    <option value="" class="d-none">Selecione um Organizador...</option>
+                                    <option th:if="${operacao} == adicionar" th:each="organizador : ${organizadores}"
+                                            th:value="${organizador.id}" th:text="${organizador.nome}"></option>
 
-                        <div class="form-group input-group">
-                            <select class="form-control custom-select" name="organizador" id="organizador" th:disabled="${operacao} == deletar">
-                                <option value="" class="d-none">Selecione um Organizador...</option>
-                                <option th:if="${operacao} == adicionar" th:each="organizador : ${organizadores}"
-                                        th:value="${organizador.id}" th:text="${organizador.nome}"></option>
+                                    <option th:if="${operacao} != adicionar" th:each="organizador : ${organizadores}"
+                                            th:value="${organizador?.id}"   th:text="${organizador.nome}"
+                                            th:selected="${organizador?.id==corrida?.organizador.getId()}"></option>
+                                </select>
+                            </div>
 
-                                <option th:if="${operacao} != adicionar" th:each="organizador : ${organizadores}"
-                                        th:value="${organizador?.id}"   th:text="${organizador.nome}"
-                                        th:selected="${organizador?.id==corrida?.organizador.getId()}"></option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <a href="/corrida/" style="text-decoration: none">
-                                <button type="button" class="btn btn-danger">Cancelar</button>
-                            </a>
-                            <input type="submit" class="btn btn-success" th:value="${botaoOperacao}" name="btnConfirmar"/>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <a href="/corrida/" style="text-decoration: none">
+                                    <button type="button" class="btn btn-danger">Cancelar</button>
+                                </a>
+                                <input type="submit" class="btn btn-success" th:value="${botaoOperacao}" name="btnConfirmar"/>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div th:replace="fragments :: div"></div>
 </div>
-
 </body>
 </html>

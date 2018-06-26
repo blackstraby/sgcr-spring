@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title>Inscrição</title>
+    <script src="/js/myscript.js"></script>
+</head>
+<body class="sticky-footer bg-dark" id="page-top">
+<br>
+<div class="container corpo">
+    <div class="row">
+        <div class="col-md-12">
+            <div th:if="${erro != null}">
+                <div class="alert alert-danger" role="alert">
+                    <h5 th:text="${erro}"></h5>
+                    <p><a href="/">Voltar para a página inicial</a></p>
+                </div>
+            </div>
+            <div th:unless="${erro != null}">
+                <div class="card">
+                    <h5 class="card-header" th:text="${title}"></h5>
+                    <div class="card-body">
+                        <form action="/inscricao/add" method="post">
+                            <div class="form-group input-group">
+                                <select class="form-control custom-select" required name="atleta" id="atleta"
+                                        th:disabled="${operacao} == deletar">
+                                    <option value="" class="d-none">Selecione um Atleta...</option>
+                                    <option th:if="${operacao} == adicionar" th:each="atleta : ${atletas}"
+                                            th:value="${atleta.id}" th:text="${atleta.nome}"></option>
+
+                                    <option th:if="${operacao} != adicionar" th:each="atleta : ${atletas}"
+                                            th:value="${atleta?.id}" th:text="${atleta.nome}"
+                                            th:selected="${atleta?.id==inscricao?.atleta.getId()}"></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group input-group">
+                                <select class="form-control custom-select" required name="percurso" id="percurso"
+                                        th:disabled="${operacao} == deletar">
+                                    <option value="" class="d-none">Selecione um Percurso...</option>
+                                    <option th:if="${operacao} == adicionar" th:each="percurso : ${percursos}"
+                                            th:value="${percurso.id}"
+                                            th:text="${percurso.quilometragem + 'km - ' + percurso.descricao}"></option>
+
+                                    <option th:if="${operacao} != adicionar" th:each="percurso : ${percursos}"
+                                            th:value="${percurso?.id}"
+                                            th:text="${percurso.quilometragem + 'km - ' + + percurso.descricao}"
+                                            th:selected="${percurso?.id==inscricao?.percurso.getId()}"></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group input-group">
+                                <select class="form-control custom-select" required name="lote" id="lote"
+                                        th:disabled="${operacao} == deletar">
+                                    <option value="" class="d-none">Selecione um Lote...</option>
+                                    <option th:if="${operacao} == adicionar" th:each="lote : ${lotes}"
+                                            th:value="${lote.id}"
+                                            th:text="${lote.tipo} + ' - R$ ' + ${lote.preco}"></option>
+
+                                    <option th:if="${operacao} != adicionar" th:each="lote : ${lotes}"
+                                            th:value="${lote?.id}" th:text="${lote.tipo} + ' - R$ ' + ${lote.preco}"
+                                            th:selected="${lote?.id==inscricao?.lote.getId()}"></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group input-group">
+                                <select class="form-control custom-select" required name="kit" id="kit"
+                                        th:disabled="${operacao} == deletar">
+                                    <option value="" class="d-none">Selecione um Kit...</option>
+                                    <option th:if="${operacao} == adicionar" th:each="kit : ${kits}"
+                                            th:value="${kit.id}" th:text="${kit.nome}"></option>
+
+                                    <option th:if="${operacao} != adicionar" th:each="kit : ${kits}"
+                                            th:value="${kit?.id}" th:text="${kit.nome}"
+                                            th:selected="${kit?.id==inscricao?.kit.getId()}"></option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <input type="hidden" name="corrida" th:value="${corrida.id}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <a href="/" class="btn btn-danger">Cancelar</a>
+                                <input type="submit" class="btn btn-success" th:value="${botaoOperacao}"
+                                       name="btnConfirmar"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

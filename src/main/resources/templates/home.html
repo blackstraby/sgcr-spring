@@ -31,16 +31,20 @@
                         <div class="card-body-icon">
                             <i class="fa fa-flag-checkered"></i>
                         </div>
-                        <div class="mr-5"><h4><span th:text="${corrida.nome}" ></span></h4></div>
-                        <div class="mr-5"><p>Data: <span th:text="${corrida.data}" ></span></p></div>
-                        <div class="mr-5"><p>Máximo de atletas: <span th:text="${corrida.maxPessoa}" ></span></p></div>
-
+                        <div class="mr-5"><h5><span th:text="${corrida.nome}" ></span></h5></div>
+                        <br>
+                        <div class="mr-5"><p style="font-size: 13px">
+                            <i class="fa fa-calendar"></i> <span th:text="${corrida.data}" ></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-clock-o"></i> <span th:text="${corrida.horario}" ></span>
+                        </p></div>
+                        <!--<div class="mr-5"><p></p></div>-->
+                        <div class="mr-5"><p style="font-size: 13px"><i class="fa fa-map-marker"></i> <span th:text="${corrida.cidade} + ', ' + ${corrida.estado}" ></span></p></div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="corrida">
-                        <span class="float-left">Ver Detalhes</span>
+                    <a class="card-footer text-white clearfix small z-1" th:href="@{'/inscricao/corrida/' + ${corrida.id}}">
+                        <span class="float-left">Fazer Inscrição</span>
                         <span class="float-right">
-                <i class="fa fa-angle-right"></i>
-              </span>
+                            <i class="fa fa-angle-right"></i>
+                        </span>
                     </a>
                 </div>
             </div>
