@@ -15,4 +15,7 @@ public interface OrganizadorRepository extends CrudRepository<Organizador, Long>
 
     @Query(value = "select distinct estado from organizador", nativeQuery = true)
     List<String> findDistinctByEstado();
+
+    Optional<Organizador> findByEmailAndSenha(String email, String senha);
+
 }

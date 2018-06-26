@@ -11,7 +11,7 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
-            <form th:action="@{/login}" method="POST">
+            <form th:object="${usuario}" th:action="@{/login}" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" id="email" name="email"  th:placeholder="Email"
@@ -19,9 +19,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Senha</label>
+                    <label for="senha">Senha</label>
                     <input type="password"  th:placeholder="Senha"
-                           id="password" name="password" class="form-control" />
+                           id="senha" name="senha" class="form-control" />
                 </div>
                 <div align="center" th:if="${param?.error}">
                     <div class="alert alert-danger" role="alert">

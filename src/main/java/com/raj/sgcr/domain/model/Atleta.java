@@ -13,7 +13,20 @@ import java.util.Set;
 @Data
 @Entity
 @Accessors(chain = true)
-public class Atleta extends  UsuarioComum  implements Serializable {
+public class Atleta extends Usuario implements Serializable {
+    private String dataNascimento;
+    private String sexo;
+    private String cpf;
+    private String cep;
+    private String logradouro;
+    private String bairro;
+    private String complemento;
+    private String numero;
+    private String cidade;
+    private String estado;
+    private String telefone;
+    private String celular;
+
     private String tamCamisa;
     private String apelido;
 
