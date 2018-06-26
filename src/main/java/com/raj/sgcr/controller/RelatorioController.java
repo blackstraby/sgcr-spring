@@ -1,12 +1,15 @@
 package com.raj.sgcr.controller;
 
+import com.raj.sgcr.domain.model.Corrida;
+import com.raj.sgcr.domain.model.Organizador;
+import com.raj.sgcr.domain.repository.CorridaRepository;
+import com.raj.sgcr.domain.repository.OrganizadorRepository;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.util.JRSaver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +19,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/relatorio")
 public class RelatorioController {
+    @Autowired
+    private CorridaRepository corridaRepository;
+
+    @Autowired
+    private OrganizadorRepository organizadorRepository;
+
+
 
     public JasperReport gerarJasper(String relatorio, String nome) throws JRException {
         InputStream relatorioStream = getClass().getResourceAsStream(relatorio);
@@ -51,15 +62,15 @@ public class RelatorioController {
     }
 
     @GetMapping(value = "")
-    public String percursos(Model model){
+    public String percursos(Model model) {
 
         return "relatorio/pesquisar";
     }
 
 
-    @GetMapping(value = "corrida/{report}/{parametro}")// site.com/administrador/edit/1/
+    @GetMapping(value = "gerar/{report}/{tipo}/{parametro}")// site.com/administrador/edit/1/
     public void gerarRelatorioCorridaEstado(HttpServletRequest request, HttpServletResponse response,
-                                            @PathVariable String report, @PathVariable String parametro)
+                                            @PathVariable String report,@PathVariable String tipo, @PathVariable String parametro)
             throws JRException, IOException, SQLException {
         String nomeRelatorio = report;
         Connection conexao = this.abrirConexao();
@@ -69,7 +80,7 @@ public class RelatorioController {
         if (relatorio != null) {
             HashMap parametros = new HashMap();
 
-            parametros.put("P_estado", parametro);
+            parametros.put("P_"+tipo, parametro);
 
             JasperPrint JP = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(this.exibirRelatorio(relatorio, parametros, conexao));
@@ -80,6 +91,8 @@ public class RelatorioController {
         conexao.close();
 
     }
+
+
 
     @GetMapping(value = "{report}")
     public void gerarRelatorio(HttpServletRequest request, HttpServletResponse response, @PathVariable String report) throws JRException, IOException, SQLException {
@@ -98,4 +111,107 @@ public class RelatorioController {
         conexao.close();
 
     }
+
+
+    @GetMapping(value = "corrida")
+    public String relatorioCorrida(Model model) {
+        model.addAttribute("operacao", "busca");
+        model.addAttribute("title", "Relatorio Corrida");
+
+        model.addAttribute("estados", corridaRepository.findDistinctByEstado());
+        model.addAttribute("organizadores", organizadorRepository.findAll());
+
+        model.addAttribute("parametro", "");
+        model.addAttribute("relatorio", "");
+
+        return "relatorio/corrida";
+    }
+
+    @RequestMapping(value = "gerarRelatorioCorridaEstado")
+    public String relatorioCorridaEstado(Model model, @RequestParam("estado") String estado) {
+        model.addAttribute("operacao", "busca");
+        model.addAttribute("title", "Relatorio Corrida");
+
+        model.addAttribute("parametro", estado);
+        model.addAttribute("tipo", "estado");
+
+        model.addAttribute("relatorio", "report_corridaEstado");
+
+        model.addAttribute("estados", corridaRepository.findDistinctByEstado());
+        model.addAttribute("organizadores", organizadorRepository.findAll());
+
+
+        return "relatorio/corrida";
+    }
+
+    @RequestMapping(value = "gerarRelatorioCorridaOrganizador")
+    public String relatorioCorridaOrganizador(Model model, @RequestParam("organizador") String nome) {
+
+
+        model.addAttribute("operacao", "busca");
+        model.addAttribute("title", "Relatorio Corrida");
+
+        model.addAttribute("organizadores", organizadorRepository.findAll());
+        model.addAttribute("parametro", nome );
+        model.addAttribute("tipo", "organizador");
+
+        model.addAttribute("relatorio", "report_corridaOrganizador");
+
+
+        return "relatorio/corrida";
+    }
+
+
+
+    @GetMapping(value = "organizador")
+    public String relatorioOrganizador(Model model) {
+        model.addAttribute("operacao", "busca");
+        model.addAttribute("title", "Relatorio Organizador");
+
+        model.addAttribute("estados", organizadorRepository.findDistinctByEstado());
+        model.addAttribute("organizadores", organizadorRepository.findAll());
+
+        model.addAttribute("parametro", "");
+        model.addAttribute("relatorio", "");
+
+        return "relatorio/organizador";
+    }
+
+
+    @RequestMapping(value = "gerarRelatorioOrganizadorEstado")
+    public String relatorioOrganizadorEstado(Model model, @RequestParam("estado") String estado) {
+        model.addAttribute("operacao", "busca");
+        model.addAttribute("title", "Relatorio Organizador");
+
+        model.addAttribute("parametro", estado);
+        model.addAttribute("tipo", "Estado");
+
+        model.addAttribute("relatorio", "report_organizadorEstado");
+
+        model.addAttribute("estados", corridaRepository.findDistinctByEstado());
+        model.addAttribute("organizadores", organizadorRepository.findAll());
+
+
+        return "relatorio/organizador";
+    }
+
+    @RequestMapping(value = "gerarRelatorioOrganizadorSexo")
+    public String relatorioOrganizadorSexo(Model model, @RequestParam("sexo") String sexo) {
+
+
+        model.addAttribute("operacao", "busca");
+        model.addAttribute("title", "Relatorio Organizador");
+
+        model.addAttribute("organizadores", organizadorRepository.findAll());
+        model.addAttribute("parametro", sexo );
+        model.addAttribute("tipo", "sexo");
+
+        model.addAttribute("relatorio", "report_organizadorSexo");
+
+
+        return "relatorio/organizador";
+    }
+
+
+
 }
