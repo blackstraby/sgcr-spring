@@ -56,12 +56,6 @@
                     <span class="nav-link-text">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a class="nav-link" th:href="@{'~/relatorio'}">
-                    <i class="fa fa-lock fa-file-pdf-o"></i>
-                    <span class="nav-link-text">Relatorios</span>
-                </a>
-            </li>
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponentsAdm"
@@ -88,15 +82,31 @@
                             <span class="nav-link-text">Buscar Corrida</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" th:href="@{'~/relatorio'}">
+                            <i class="fa fa-lock fa-file-pdf-o"></i>
+                            <span class="nav-link-text">Relatorios</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a class="nav-link" th:href="@{'~/atleta'}">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponentsAtl"
+                   data-parent="#exampleAccordion">
                     <i class="fa fa-male fa-lg"></i>
                     <span class="nav-link-text">Atleta</span>
                 </a>
+                <ul class="sidenav-second-level collapse" id="collapseComponentsAtl">
+                    <li>
+                        <a class="nav-link" th:href="@{'~/inscricao'}">
+                            <i class="fa fa-ticket fa-lg"></i>
+                            <span class="nav-link-text">Inscrição</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponentsOrg"
                    data-parent="#exampleAccordion">
@@ -114,6 +124,12 @@
                         <a class="nav-link" th:href="@{'~/organizador/busca'}">
                             <i class="fa fa-flag-checkered fa-lg"></i>
                             <span class="nav-link-text">Buscar Corrida</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" th:href="@{'~/atleta'}">
+                            <i class="fa fa-male fa-lg"></i>
+                            <span class="nav-link-text">Buscar Atleta</span>
                         </a>
                     </li>
                 </ul>
@@ -344,13 +360,18 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                <a class="btn btn-primary" href="/atleta/add">
+                    <i class="fa fa-fw fa-user-plus"></i>Cadastrar Atleta</a>
             </li>
+            &nbsp;
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                <a class="btn btn-primary" href="/organizador/add">
+                    <i class="fa fa-fw fa-user-plus"></i>Cadastrar Organizador</a>
             </li>
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link" data-toggle="modal" data-target="#exampleModal">-->
+                    <!--<i class="fa fa-fw fa-sign-out"></i>Logout</a>-->
+            <!--</li>-->
         </ul>
     </div>
 </nav>

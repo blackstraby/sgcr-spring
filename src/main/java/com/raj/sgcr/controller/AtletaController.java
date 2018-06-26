@@ -29,8 +29,8 @@ public class AtletaController {
     @GetMapping(value = "add")
     public String displayCorredorForm(Model model) {
         model.addAttribute("operacao", "adicionar");
-        model.addAttribute("title", "Adicionar atleta");
-        model.addAttribute("botaoOperacao", "Adicionar Atleta");
+        model.addAttribute("title", "Cadastro atleta");
+        model.addAttribute("botaoOperacao", "Cadastrar");
 
         return "atleta/manter";
     }
