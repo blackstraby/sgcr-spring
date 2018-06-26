@@ -22,12 +22,16 @@
                     <form action="/atleta/busca" method="get">
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="nome">Nome Completo:</label>
-                                    <input type="text" class="form-control" id="nome" name="nome"/>
-                                    <button class="btn btn-success" type="submit">Buscar</button>
+                                <div class="input-group">
+                                    <input class="form-control" type="text"  id="nome" name="nome" placeholder="Pesquise por nome"/>
+                                    <span class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                             <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
+
                         </div>
                     </form>
 

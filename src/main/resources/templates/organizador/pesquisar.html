@@ -5,45 +5,53 @@
         <meta charset="UTF-8"/>
         <title th:text="${title}"> Organizador </title>
     </head>
-<body>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
 
-<div class="container corpo">
-    <div class="row">
-        <h1 th:text="${title}">Organizador</h1>
-
-        <div class="col-md-12">
-            <div class="panel panel-primary">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
-                       th:if="${!organizadores.isEmpty()}">
-                    <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Data Nascimento</th>
-                        <th>Tamanho Camisa</th>
-                        <th>Celular</th>
-                        <th colspan="2">Acao</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="organizador : ${organizadores}">
-                        <td th:text="${organizador.id}">Codigo</td>
-                        <td th:text="${organizador.nome}">Nome</td>
-                        <td th:text="${organizador.email}">Email</td>
-                        <td th:text="${organizador.dataNascimento}">Data Nascimento</td>
-                        <td th:text="${organizador.celular}">Celular</td>
-                        <td><a th:href="@{'/organizador/edit/' + ${organizador.id}}">Editar</a></td>
-                        <td><a th:href="@{'/organizador/delete/' + ${organizador.id}}">Excluir</a></td>
-                    </tr>
-                </table>
-                <h2 th:unless="${!organizadores.isEmpty()}">Sem Organizadores</h2>
-
-                <a class="btn btn-primary" th:href="@{'~/organizador/add/'}">Adicionar</a>
-                <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="${title}"></span></li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                               th:if="${!organizadores.isEmpty()}">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Data Nascimento</th>
+                                <th>Tamanho Camisa</th>
+                                <th>Celular</th>
+                                <th colspan="2">Acao</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="organizador : ${organizadores}">
+                                <td th:text="${organizador.id}">Codigo</td>
+                                <td th:text="${organizador.nome}">Nome</td>
+                                <td th:text="${organizador.email}">Email</td>
+                                <td th:text="${organizador.dataNascimento}">Data Nascimento</td>
+                                <td th:text="${organizador.celular}">Celular</td>
+                                <td><a th:href="@{'/organizador/edit/' + ${organizador.id}}">Editar</a></td>
+                                <td><a th:href="@{'/organizador/delete/' + ${organizador.id}}">Excluir</a></td>
+                            </tr>
+                        </table>
+                        <h2 th:unless="${!organizadores.isEmpty()}">Sem Organizadores</h2>
+                        <a class="btn btn-primary" th:href="@{'~/organizador/add/'}">Adicionar</a>
+                        <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
+                    </div>
+                </div>
             </div>
         </div>
+        <div th:replace="fragments :: div"></div>
     </div>
-</div>
 </body>
 </html>
