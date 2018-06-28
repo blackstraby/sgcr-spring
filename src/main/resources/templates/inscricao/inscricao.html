@@ -1,82 +1,156 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head">
     <meta charset="UTF-8"/>
-    <title>Inscrição</title>
-    <script src="/js/myscript.js"></script>
+    <title th:text="${title}"> Inscrição </title>
 </head>
-<body class="sticky-footer bg-dark" id="page-top">
-<br>
-<div class="container corpo">
-    <div class="row">
-        <div class="col-md-12">
-            <div th:if="${erro != null}">
-                <div class="alert alert-danger" role="alert">
-                    <h5 th:text="${erro}"></h5>
-                    <p><a href="/">Voltar para a página inicial</a></p>
+<body class="fixed-nav sticky-footer" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
+
+<div th:classappend="${session.usuario == null} ? 'div-deslogado' : 'content-wrapper'">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">Inscrição</li>
+            <li class="breadcrumb-item active" th:text="${corrida?.nome}"></li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <div th:unless="${erro == null}">
+                    <div class="alert alert-danger" role="alert">
+                        <h5 th:text="${erro}"></h5>
+                        <p><a href="/">Voltar para a página inicial</a></p>
+                    </div>
                 </div>
-            </div>
-            <div th:unless="${erro != null}">
-                <div class="card">
-                    <h5 class="card-header" th:text="${title}"></h5>
-                    <div class="card-body">
+                <div th:if="${erro == null}">
+                    <div th:if="${session.permissao == null || session.permissao != 'ATLETA'}">
+                        <div class="alert alert-danger" role="alert">
+                            <h5>Você precisar estar logado para fazer uma inscrição</h5>
+                        </div>
+                    </div>
+
+                    <div th:if="${session.permissao != null && session.permissao == 'ATLETA'}">
                         <form action="/inscricao/add" method="post">
-                            <div class="form-group input-group">
-                                <select class="form-control custom-select" required name="atleta" id="atleta"
-                                        th:disabled="${operacao} == deletar">
-                                    <option value="" class="d-none">Selecione um Atleta...</option>
-                                    <option th:if="${operacao} == adicionar" th:each="atleta : ${atletas}"
-                                            th:value="${atleta.id}" th:text="${atleta.nome}"></option>
-
-                                    <option th:if="${operacao} != adicionar" th:each="atleta : ${atletas}"
-                                            th:value="${atleta?.id}" th:text="${atleta.nome}"
-                                            th:selected="${atleta?.id==inscricao?.atleta.getId()}"></option>
-                                </select>
-                            </div>
-
-                            <div class="form-group input-group">
-                                <select class="form-control custom-select" required name="percurso" id="percurso"
-                                        th:disabled="${operacao} == deletar">
-                                    <option value="" class="d-none">Selecione um Percurso...</option>
-                                    <option th:if="${operacao} == adicionar" th:each="percurso : ${percursos}"
-                                            th:value="${percurso.id}"
-                                            th:text="${percurso.quilometragem + 'km - ' + percurso.descricao}"></option>
-
-                                    <option th:if="${operacao} != adicionar" th:each="percurso : ${percursos}"
-                                            th:value="${percurso?.id}"
-                                            th:text="${percurso.quilometragem + 'km - ' + + percurso.descricao}"
-                                            th:selected="${percurso?.id==inscricao?.percurso.getId()}"></option>
-                                </select>
-                            </div>
-
-                            <div class="form-group input-group">
-                                <select class="form-control custom-select" required name="lote" id="lote"
-                                        th:disabled="${operacao} == deletar">
-                                    <option value="" class="d-none">Selecione um Lote...</option>
-                                    <option th:if="${operacao} == adicionar" th:each="lote : ${lotes}"
-                                            th:value="${lote.id}"
-                                            th:text="${lote.tipo} + ' - R$ ' + ${lote.preco}"></option>
-
-                                    <option th:if="${operacao} != adicionar" th:each="lote : ${lotes}"
-                                            th:value="${lote?.id}" th:text="${lote.tipo} + ' - R$ ' + ${lote.preco}"
-                                            th:selected="${lote?.id==inscricao?.lote.getId()}"></option>
-                                </select>
-                            </div>
-
-                            <div class="form-group input-group">
-                                <select class="form-control custom-select" required name="kit" id="kit"
-                                        th:disabled="${operacao} == deletar">
-                                    <option value="" class="d-none">Selecione um Kit...</option>
-                                    <option th:if="${operacao} == adicionar" th:each="kit : ${kits}"
-                                            th:value="${kit.id}" th:text="${kit.nome}"></option>
-
-                                    <option th:if="${operacao} != adicionar" th:each="kit : ${kits}"
-                                            th:value="${kit?.id}" th:text="${kit.nome}"
-                                            th:selected="${kit?.id==inscricao?.kit.getId()}"></option>
-                                </select>
-                            </div>
-
                             <div>
+                                <h5 class="card-title">Percurso:</h5>
+                                <div class="row">
+                                    <div class="col-xl-3 col-sm-6 mb-3" th:each="percurso : ${percursos}">
+                                        <div class="card text-white bg-dark o-hidden h-100">
+                                            <div class="card-body">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-map"></i>
+                                                </div>
+                                                <div class="mr-5">
+                                                    <h5><span
+                                                            th:text="${percurso?.quilometragem + 'km'}"></span>
+                                                    </h5>
+                                                </div>
+                                                <br>
+                                                <div class="mr-5"><p style="font-size: 13px"><i
+                                                        class="fa fa-info"></i> <span
+                                                        th:text="${percurso?.descricao}"></span>
+                                                </p></div>
+                                            </div>
+                                            <label th:for="${percurso?.id + 'percurso'}"
+                                                   class="card-footer bg-dark text-white clearfix small z-1">
+                                                            <span class="float-left">
+                                                                <input type="radio" name="percurso"
+                                                                       th:value="${percurso?.id}"
+                                                                       th:id="${percurso?.id + 'percurso'}" required/> Selecionar Percurso
+                                                            </span>
+                                                <span class="float-right"><i
+                                                        class="fa fa-angle-right"></i>
+                                                            </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <h5 class="card-title">Kit:</h5>
+                                <div class="row">
+                                    <div class="col-xl-3 col-sm-6 mb-3" th:each="kit : ${kits}">
+                                        <div class="card text-white bg-dark o-hidden h-100">
+                                            <div class="card-body">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-shopping-bag"></i>
+                                                </div>
+                                                <div class="mr-5">
+                                                    <h5><span th:text="${kit?.nome}"></span></h5>
+                                                </div>
+                                                <br>
+                                                <div class="mr-5"><p style="font-size: 13px">
+                                                    <i class="fa fa-dollar"></i> <span
+                                                        th:text="${kit?.preco}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <i class="fa fa-recycle"></i> <span
+                                                        th:text="${kit?.tipoChip}"></span>
+                                                </p></div>
+                                                <div class="mr-5"><p style="font-size: 13px"><i
+                                                        class="fa fa-info"></i> <span
+                                                        th:text="${kit?.descricao}"></span>
+                                                </p></div>
+                                            </div>
+                                            <label th:for="${kit?.id + 'kit'}"
+                                                   class="card-footer bg-dark text-white clearfix small z-1">
+                                                            <span class="float-left">
+                                                                <input type="radio" name="kit" th:value="${kit?.id}"
+                                                                       th:id="${kit?.id + 'kit'}" required/> Selecionar Kit
+                                                            </span>
+                                                <span class="float-right"><i
+                                                        class="fa fa-angle-right"></i>
+                                                            </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <h5 class="card-title">Lote:</h5>
+                                <div class="row">
+                                    <div class="col-xl-3 col-sm-6" th:each="lote : ${lotes}">
+                                        <div class="card text-white bg-dark o-hidden h-100">
+                                            <div class="card-body">
+                                                <div class="card-body-icon">
+                                                    <i class="fa fa-link"></i>
+                                                </div>
+                                                <div class="mr-5">
+                                                    <h5><span th:text="${lote.tipo}"></span></h5>
+                                                </div>
+                                                <br>
+                                                <div class="mr-5"><p style="font-size: 13px">
+                                                    <i class="fa fa-calendar"></i> <span
+                                                        th:text="${'Início: ' + lote?.dataInicio}"></span><br>
+                                                    <i class="fa fa-calendar"></i> <span
+                                                        th:text="${'Término: ' + lote?.dataFinal}"></span>
+                                                </p></div>
+                                                <div class="mr-5"><p style="font-size: 13px"><i
+                                                        class="fa fa-dollar"></i> <span
+                                                        th:text="${lote?.preco}"></span>
+                                                </p></div>
+                                            </div>
+                                            <label th:for="${lote?.id + 'lote'}"
+                                                   class="card-footer bg-dark text-white clearfix small z-1">
+                                                            <span class="float-left">
+                                                                <input type="radio" name="lote" th:value="${lote?.id}"
+                                                                       th:id="${lote?.id + 'lote'}" required/> Selecionar Lote
+                                                            </span>
+                                                <span class="float-right"><i
+                                                        class="fa fa-angle-right"></i>
+                                                            </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group">
                                 <input type="hidden" name="corrida" th:value="${corrida.id}"/>
                             </div>
 
@@ -91,6 +165,7 @@
             </div>
         </div>
     </div>
+    <div th:replace="fragments :: div"></div>
 </div>
 </body>
 </html>

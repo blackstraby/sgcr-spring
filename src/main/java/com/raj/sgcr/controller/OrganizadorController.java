@@ -1,7 +1,7 @@
 package com.raj.sgcr.controller;
 
-import com.raj.sgcr.domain.model.Corrida;
 import com.raj.sgcr.domain.model.Organizador;
+import com.raj.sgcr.domain.model.Usuario;
 import com.raj.sgcr.domain.repository.CorridaRepository;
 import com.raj.sgcr.domain.repository.OrganizadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 @Controller
 @RequestMapping(value = "organizador")
@@ -38,9 +39,10 @@ public class OrganizadorController {
     }
 
     @PostMapping(value = "add")
-    public String processOrganizadorForm(@ModelAttribute Organizador organizador) {
+    public String processOrganizadorForm(@ModelAttribute Organizador organizador, Model model) {
         organizadorRepository.save(organizador);
-        return "redirect:/organizador";
+        model.addAttribute("msgSucesso", "Cadastro como organizador efetuado com sucesso!");
+        return "auth/login";
     }
 
     @GetMapping(value = "edit/{id}") // site.com/organizador/edit
@@ -104,5 +106,36 @@ public class OrganizadorController {
         model.addAttribute("organizadores", organizadorRepository.findAll());
         model.addAttribute("corridas", corridaRepository.findByOrganizador(organizador.get()));
         return "organizador/buscaCorridaOrganizador";
+    }
+
+    @PostMapping(value = "perfil")
+    public String editarPerfil(Model model, @ModelAttribute Organizador organizador, HttpServletRequest request) {
+        if(Usuario.isOrganizador(request)) {
+            Organizador usuario = (Organizador) Usuario.getUsuario(request);
+            organizador.setId(usuario.getId());
+            organizadorRepository.save(organizador);
+            request.getSession().setAttribute("usuario", organizador);
+            model.addAttribute("operacao", "editar");
+            model.addAttribute("botaoOperacao", "Editar");
+            model.addAttribute("title", "Perfil de Organizador");
+            model.addAttribute("organizador", Usuario.getUsuario(request));
+            model.addAttribute("action", "/organizador/perfil");
+            model.addAttribute("msgSucesso", "Dados alterados com sucesso!");
+            return "organizador/manter";
+        }
+        return "redirect:/perfil";
+    }
+
+    @PostMapping(value = "deletar")
+    public String deletarPerfil(@ModelAttribute Organizador organizador, HttpServletRequest request) {
+        if(Usuario.isOrganizador(request)) {
+            Organizador usuario = (Organizador) Usuario.getUsuario(request);
+            organizador.setId(usuario.getId());
+            organizadorRepository.delete(organizador);
+            request.getSession().removeAttribute("usuario");
+            request.getSession().removeAttribute("permissao");
+            return "redirect:/";
+        }
+        return "redirect:/perfil";
     }
 }

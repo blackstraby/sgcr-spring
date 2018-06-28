@@ -17,6 +17,12 @@
         </ol>
         <div class="row">
             <div class="col-md-12">
+                <div class="alert alert-success" role="alert" th:unless="${msgSucesso == null}">
+                    <span th:text="${msgSucesso}"></span>
+                </div>
+                <div class="alert alert-danger" role="alert" th:unless="${msgErro == null}">
+                    <span th:text="${msgErro}"></span>
+                </div>
                 <div class="card">
                     <h5 class="card-header" th:text="${title}">Corrida</h5>
                     <div class="card-body">
@@ -35,7 +41,7 @@
 
                             <div class="form-group">
                                 <label for="data">Data:</label>
-                                <input type="date" class="form-control" id="data" name="data" required
+                                <input type="text" class="form-control" id="data" name="data" required
                                        th:value="${corrida?.data}" th:disabled="${operacao} == deletar"/>
                             </div>
 
@@ -89,26 +95,14 @@
 
                             <div class="form-group">
                                 <label for="dataInicioRetiradaKit">Início Retirada Kit:</label>
-                                <input type="date" class="form-control" id="dataInicioRetiradaKit" name="dataInicioRetiradaKit" required
+                                <input type="text" class="form-control" id="dataInicioRetiradaKit" name="dataInicioRetiradaKit" required
                                        th:value="${corrida?.dataInicioRetiradaKit}" th:disabled="${operacao} == deletar"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="dataFinalRetiradaKit">Final Retirada Kit:</label>
-                                <input type="date" class="form-control" id="dataFinalRetiradaKit" name="dataFinalRetiradaKit" required
+                                <input type="text" class="form-control" id="dataFinalRetiradaKit" name="dataFinalRetiradaKit" required
                                        th:value="${corrida?.dataInicioRetiradaKit}" th:disabled="${operacao} == deletar"/>
-                            </div>
-
-                            <div class="form-group input-group">
-                                <select class="form-control custom-select" name="organizador" id="organizador" th:disabled="${operacao} == deletar">
-                                    <option value="" class="d-none">Selecione um Organizador...</option>
-                                    <option th:if="${operacao} == adicionar" th:each="organizador : ${organizadores}"
-                                            th:value="${organizador.id}" th:text="${organizador.nome}"></option>
-
-                                    <option th:if="${operacao} != adicionar" th:each="organizador : ${organizadores}"
-                                            th:value="${organizador?.id}"   th:text="${organizador.nome}"
-                                            th:selected="${organizador?.id==corrida?.organizador.getId()}"></option>
-                                </select>
                             </div>
 
                             <div class="form-group">

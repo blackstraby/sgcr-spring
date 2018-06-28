@@ -6,22 +6,29 @@
     <title>Login</title>
 </head>
 
-<body class="bg-dark">
+<body class="fixed-nav sticky-footer" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
 <div class="container">
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
-            <form th:object="${usuario}" th:action="@{/login}" method="POST">
+            <div class="alert alert-success" role="alert" th:unless="${msgSucesso == null}">
+                <span th:text="${msgSucesso}"></span>
+            </div>
+            <div class="alert alert-danger" role="alert" th:unless="${msgErro == null}">
+                <span th:text="${msgErro}"></span>
+            </div>
+            <form th:object="${usuario}" th:action="@{/login}" method="POST" autocomplete="off">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="email"  th:placeholder="Email"
-                           class="form-control" />
+                    <input type="text" id="email" name="email" th:placeholder="Email"
+                           class="form-control" autofocus />
                 </div>
 
                 <div class="form-group">
                     <label for="senha">Senha</label>
-                    <input type="password"  th:placeholder="Senha"
-                           id="senha" name="senha" class="form-control" />
+                    <input type="password" th:placeholder="Senha"
+                           id="senha" name="senha" class="form-control"/>
                 </div>
                 <div align="center" th:if="${param?.error}">
                     <div class="alert alert-danger" role="alert">
@@ -31,16 +38,15 @@
                 <button class="btn btn-primary btn-block" type="submit">Login</button>
             </form>
             <div class="text-center">
-                <a class="d-block small mt-3" href="registration">Cadastre-se</a>
+                <span class="d-block small mt-3">
+                    Cadastre-se como <a th:href="@{'~/atleta/add'}">Atleta</a> ou <a th:href="@{'~/organizador/add'}">Organizador</a>
+                </span>
             </div>
         </div>
     </div>
 </div>
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<div th:replace="fragments :: div"></div>
 </body>
 
 </html>

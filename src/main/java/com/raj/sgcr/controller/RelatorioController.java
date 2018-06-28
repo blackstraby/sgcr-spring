@@ -2,6 +2,7 @@ package com.raj.sgcr.controller;
 
 import com.raj.sgcr.domain.model.Corrida;
 import com.raj.sgcr.domain.model.Organizador;
+import com.raj.sgcr.domain.model.Usuario;
 import com.raj.sgcr.domain.repository.CorridaRepository;
 import com.raj.sgcr.domain.repository.OrganizadorRepository;
 import net.sf.jasperreports.engine.*;
@@ -29,8 +30,6 @@ public class RelatorioController {
 
     @Autowired
     private OrganizadorRepository organizadorRepository;
-
-
 
     public JasperReport gerarJasper(String relatorio, String nome) throws JRException {
         InputStream relatorioStream = getClass().getResourceAsStream(relatorio);
@@ -62,9 +61,12 @@ public class RelatorioController {
     }
 
     @GetMapping(value = "")
-    public String percursos(Model model) {
-
+    public String percursos(Model model, HttpServletRequest request) {
+        if (Usuario.isAdministrador(request)) {
         return "relatorio/pesquisar";
+
+        }
+        return "redirect:login";
     }
 
 

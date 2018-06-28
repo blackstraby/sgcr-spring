@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="input-group">
-                                    <input class="form-control" type="text"  id="nome" name="nome" placeholder="Pesquise por nome"/>
+                                    <input class="form-control" type="text"  id="nome" name="nome" placeholder="Buscar Atleta"/>
                                     <span class="input-group-append">
                                         <button class="btn btn-primary" type="submit">
                                              <i class="fa fa-search"></i>
@@ -34,41 +34,40 @@
 
                         </div>
                     </form>
-
+                    <br>
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                        <table class="table table-bordered" width="100%" cellspacing="0"
                                th:if="${!atletas.isEmpty()}">
                             <thead>
                             <tr>
-                                <th>Código</th>
                                 <th>Nome</th>
                                 <th>E-mail</th>
                                 <th>Data Nascimento</th>
                                 <th>Tamanho Camisa</th>
                                 <th>Celular</th>
-                                <th colspan="2" class="text-center">Acao</th>
+                                <!--<th colspan="2" class="text-center">Acao</th>-->
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="atleta : ${atletas}">
-                                <td th:text="${atleta.id}">Codigo</td>
                                 <td th:text="${atleta.nome}">Nome</td>
                                 <td th:text="${atleta.email}">Email</td>
                                 <td th:text="${atleta.dataNascimento}">Data Nascimento</td>
                                 <td th:text="${atleta.tamCamisa}">Tamanho Camisa</td>
                                 <td th:text="${atleta.celular}">Celular</td>
-                                <td><a th:href="@{'/atleta/edit/' + ${atleta.id}}">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a></td>
-                                <td><a th:href="@{'/atleta/delete/' + ${atleta.id}}">
-                                    <i class="fa fa-trash" aria-hidden="true"></i> Excluir</a></td>
+                                <!--<td><a th:href="@{'/atleta/edit/' + ${atleta.id}}">-->
+                                    <!--<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a></td>-->
+                                <!--<td><a th:href="@{'/atleta/delete/' + ${atleta.id}}">-->
+                                    <!--<i class="fa fa-trash" aria-hidden="true"></i> Excluir</a></td>-->
                             </tr>
                         </table>
                     </div>
-                    <h2 th:unless="${!atletas.isEmpty()}">Sem Atletas</h2>
-                    <a class="btn btn-primary" th:href="@{'~/atleta/add/'}">Adicionar</a>
-                    <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
-                    <a class="btn btn-danger" th:href="@{'~/relatorio/report_atleta'}">Gerar Relatorio</a>
 
+                    <div>
+                        <h2 th:unless="${!atletas.isEmpty()}">Sem Atletas</h2>
+                    </div>
+
+                    <a class="btn btn-dark" th:href="@{'~/'}">Voltar</a>
                 </div>
             </div>
         </div>

@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head">
     <meta charset="UTF-8"/>
-    <title>Lote</title>
+    <title th:text="${title}"></title>
 </head>
-<div>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
 
-    <div class="container corpo">
-        <br><br>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"><span th:text="${title}"></span></li>
+        </ol>
         <div class="row">
             <div class="col-md-12">
+                <div class="alert alert-success" role="alert" th:unless="${msgSucesso == null}">
+                    <span th:text="${msgSucesso}"></span>
+                </div>
+                <div class="alert alert-danger" role="alert" th:unless="${msgErro == null}">
+                    <span th:text="${msgErro}"></span>
+                </div>
                 <div class="card">
-                    <h5 class="card-header" th:text="${title}">Lote</h5>
+                    <h5 class="card-header" th:text="${title}">Corrida</h5>
                     <div class="card-body">
                         <form th:object="${lote}" method="post">
 
@@ -69,5 +82,7 @@
             </div>
         </div>
     </div>
-    </body>
+    <div th:replace="fragments :: div"></div>
+</div>
+</body>
 </html>

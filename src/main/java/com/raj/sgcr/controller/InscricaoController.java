@@ -1,13 +1,18 @@
 package com.raj.sgcr.controller;
 
+import com.raj.sgcr.domain.model.Atleta;
 import com.raj.sgcr.domain.model.Corrida;
 import com.raj.sgcr.domain.model.Inscricao;
+import com.raj.sgcr.domain.model.Usuario;
 import com.raj.sgcr.domain.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
 
@@ -45,27 +50,32 @@ public class InscricaoController {
         return "inscricao/pesquisar";
     }
 
-    @GetMapping(value = "add")
-    public String getInscricoesAdd(Model model){
-        model.addAttribute("operacao", "adicionar");
-        model.addAttribute("corridas", corridaRepository.findAll());
-        model.addAttribute("atletas", atletaRepository.findAll());
-        model.addAttribute("percursos", percursoRepository.findAll());
-        model.addAttribute("kits", kitRepository.findAll());
-        model.addAttribute("lotes", loteRepository.findAll());
-        model.addAttribute("title", "Adicionar inscrição");
-        model.addAttribute("botaoOperacao", "Adicionar Inscrição");
-        return "inscricao/manter";
-    }
+//    @GetMapping(value = "add")
+//    public String getInscricoesAdd(Model model){
+//        model.addAttribute("operacao", "adicionar");
+//        model.addAttribute("corridas", corridaRepository.findAll());
+//        model.addAttribute("atletas", atletaRepository.findAll());
+//        model.addAttribute("percursos", percursoRepository.findAll());
+//        model.addAttribute("kits", kitRepository.findAll());
+//        model.addAttribute("lotes", loteRepository.findAll());
+//        model.addAttribute("title", "Adicionar inscrição");
+//        model.addAttribute("botaoOperacao", "Adicionar Inscrição");
+//        return "inscricao/manter";
+//    }
 
     @PostMapping(value = "add")
-    public String postInscricoesAdd(Model model, @ModelAttribute Inscricao inscricao){
+    public String postInscricoesAdd(Model model, @ModelAttribute Inscricao inscricao, HttpServletRequest request){
+        if(Usuario.isAtleta(request)) {
+            inscricao.setAtleta((Atleta) Usuario.getUsuario(request));
+            Random gerador = new Random();
+            inscricao.setDataCompra(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+            int n = 1 + gerador.nextInt(1000);
+            inscricao.setNumeroPeito(String.valueOf(n));
+            inscricaoRepository.save(inscricao);
+            return "redirect:/inscricao";
+        }
+        //tratar
         model.addAttribute("title", "Adicionar inscrição");
-        Random gerador = new Random();
-        inscricao.setDataCompra("27/06/2018");
-        int n = 1 + gerador.nextInt(1000);
-        inscricao.setNumeroPeito(String.valueOf(n));
-        inscricaoRepository.save(inscricao);
         return "redirect:/inscricao";
     }
 

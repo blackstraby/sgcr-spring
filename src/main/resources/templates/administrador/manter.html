@@ -1,62 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-    <head th:replace="fragments :: head">
-        <meta charset="UTF-8"/>
-        <title>Administrador</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"> Administrador </title>
+</head>
+<body class="fixed-nav sticky-footer" id="page-top">
+<nav th:replace="fragments :: nav"></nav>
 
-    </head>
-
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
-
-<div class="container corpo">
-    <br>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <h5 class="card-header" th:text="${title}">Administrador</h5>
-                <div class="card-body">
-                    <form th:object="${administrador}" method="post">
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="nome">Nome Completo:</label>
-                                <input type="text" required class="form-control" id="nome" name="nome"
-                                       th:value="${administrador?.nome}" th:disabled="${operacao} == deletar"/>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">E-mail:</label>
-                                <input type="email" class="form-control" id="email" name="email" required
-                                       th:value="${administrador?.email}" th:disabled="${operacao} == deletar"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="senha1">Senha:</label>
-                                <input type="password" class="form-control" id="senha1" name="senha" required
-                                       autocomplete th:value="${administrador?.senha}"
-                                       th:disabled="${operacao} == deletar"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="senha2">Confirmar Senha:</label>
-                                <input type="password" class="form-control" id="senha2" name="senha2" required
-                                       oninput="validaSenha(this)" th:value="${administrador?.senha}"
-                                       th:disabled="${operacao} == deletar"/>
-                            </div>
-
-                            <div class="form-group">
-                                <a href="/administrador/" style="text-decoration: none" class="btn btn-danger">
-                                    Cancelar
-                                </a>
-
-                                <input type="submit" class="btn btn-success" th:value="${botaoOperacao}"
-                                       name="btnConfirmar"/>
-
-                            </div>
+<div th:classappend="${session.usuario == null} ? 'div-deslogado' : 'content-wrapper'">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>
+                            <span th:text="${title}"></span>
+                            <button class="btn btn-outline-danger btn-sm float-right" data-toggle="modal" data-target="#deleteModal" th:unless="${session.usuario == null}">
+                                <i class="fa fa-trash"></i> Deletar Conta
+                            </button>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-success" role="alert" th:unless="${msgSucesso == null}">
+                            <span th:text="${msgSucesso}"></span>
                         </div>
-                    </form>
+                        <div class="alert alert-danger" role="alert" th:unless="${msgErro == null}">
+                            <span th:text="${msgErro}"></span>
+                        </div>
+                        <form th:object="${administrador}" th:action="@{${action}}" method="post">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="nome">Nome Completo:</label>
+                                    <input type="text" required class="form-control" id="nome" name="nome"
+                                           th:value="${administrador?.nome}" th:disabled="${operacao} == deletar"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">E-mail:</label>
+                                    <input type="email" class="form-control" id="email" name="email" required
+                                           th:value="${administrador?.email}" th:disabled="${operacao} == deletar"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="senha1">Senha:</label>
+                                    <input type="password" class="form-control" id="senha1" name="senha" required
+                                           autocomplete th:value="${administrador?.senha}"
+                                           th:disabled="${operacao} == deletar"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="senha2">Confirmar Senha:</label>
+                                    <input type="password" class="form-control" id="senha2" name="senha2" required
+                                           oninput="validaSenha(this)" th:value="${administrador?.senha}"
+                                           th:disabled="${operacao} == deletar"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <a href="/administrador/" style="text-decoration: none" class="btn btn-danger">
+                                        Cancelar
+                                    </a>
+
+                                    <input type="submit" class="btn btn-success" th:value="${botaoOperacao}"
+                                           name="btnConfirmar"/>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div th:replace="fragments :: div"></div>
 </div>
 </body>
 </html>
